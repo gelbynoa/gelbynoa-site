@@ -1,0 +1,51 @@
+<!-- @dsCard group="Components" name="FAQ Accordion" subtitle="Hairline dividers · slow expand · no loud icons" viewport="960x560" -->
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GelByNoa — FAQ Accordion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300&family=Assistant:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{--porcelain:#F7F3EE;--ink:#211C18;--taupe:#8B8078;--rose-deep:#A9857A;--sand:#D8C7B8;
+    --serif:"Frank Ruhl Libre",Georgia,serif;--sans:"Assistant",system-ui,sans-serif;--ease:cubic-bezier(.16,1,.3,1);}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);font-weight:300;color:var(--ink);background:var(--porcelain);padding:56px}
+  .eyebrow{font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--rose-deep)}
+  h1{font-family:var(--serif);font-weight:300;font-size:2.2rem;margin:.4rem 0 2rem}
+  .faq{max-width:720px;border-top:1px solid var(--sand)}
+  details{border-bottom:1px solid var(--sand)}
+  summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:1.5rem 0;font-family:var(--serif);font-weight:300;font-size:1.4rem}
+  summary::-webkit-details-marker{display:none}
+  .sign{position:relative;width:16px;height:16px;flex:none}
+  .sign::before,.sign::after{content:"";position:absolute;background:var(--rose-deep);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+  .sign::before{inset-inline:0;top:50%;height:1px;transform:translateY(-50%)}
+  .sign::after{inset-block:0;inset-inline-start:50%;width:1px;transform:translateX(-50%)}
+  details[open] .sign::after{opacity:0;transform:translateX(-50%) rotate(90deg)}
+  .answer{padding:0 0 1.6rem;color:var(--taupe);max-width:60ch;line-height:1.9}
+</style>
+</head>
+<body>
+  <span class="eyebrow">Components · FAQ</span>
+  <h1>שאלות נפוצות</h1>
+  <div class="faq">
+    <details open>
+      <summary>כמה תלמידות יש בכל מחזור?<span class="sign"></span></summary>
+      <div class="answer">עד שש תלמידות בלבד. הקבוצות אינטימיות בכוונה, כדי שכל אחת תקבל ליווי אישי וצמוד.</div>
+    </details>
+    <details>
+      <summary>האם צריך ניסיון קודם?<span class="sign"></span></summary>
+      <div class="answer">לא. קורס היסוד בנוי מאפס — מהאחיזה הראשונה של המכחול ועד היצירה החתומה.</div>
+    </details>
+    <details>
+      <summary>מה כולל הליווי האישי?<span class="sign"></span></summary>
+      <div class="answer">נועה מלווה כל תלמידה לאורך כל המחזור, עם תיקונים עדינים, משוב אישי וזמינות מלאה.</div>
+    </details>
+    <details>
+      <summary>איפה מתקיימים המפגשים?<span class="sign"></span></summary>
+      <div class="answer">בסטודיו שלנו בתל אביב — מרחב שקט ומדויק שנבנה במיוחד ללמידה.</div>
+    </details>
+  </div>
+</body>
+</html>

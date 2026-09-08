@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GelByNoa Academy — אקדמיה לאמנות הציפורניים</title>
+  <meta name="description" content="אקדמיה יוקרתית לאמניות ציפורניים מודרניות. טכניקות ג'ל למתחילות ומתקדמות, בקבוצות קטנות, בליווי אישי ובסטנדרט הגבוה ביותר." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500&family=Assistant:wght@200;300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Sacramento&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="styles.css?v=99" />
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="header__right">
+      <a href="index.html" class="header__brand"><span>GelByNoa<span class="header__academy">cademy</span></span><img src="assets/logo-web.png" alt="" class="header__logo" aria-hidden="true" /></a>
+      <nav class="header__nav" aria-label="ניווט ראשי">
+        <a href="about.html">אודות</a>
+        <div class="header__dropdown">
+          <a href="index.html#courses" class="header__dropdown-toggle">הקורסים<span class="header__caret" aria-hidden="true">▾</span></a>
+          <div class="header__submenu">
+            <a href="course.html">קורס מתחילות · לק ג׳ל במבנה אנטומי</a>
+            <a href="course-beinlevein.html">השתלמות בין לבין · Next Level</a>
+            <a href="course-miktzoiot.html">השתלמות מקצועיות · Level Up</a>
+          </div>
+        </div>
+        <a href="gallery.html">גלריה</a>
+        <a href="faq.html">שאלות נפוצות</a>
+      </nav>
+    </div>
+    <div class="header__lang"><button class="header__lang-toggle" aria-label="שפה / Language" aria-haspopup="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3z"/></svg></button><div class="header__lang-menu"><button type="button" data-lang="he">עברית</button><button type="button" data-lang="en">English</button></div></div>
+    <a href="contact.html" class="header__cta">יצירת קשר</a>
+    <button class="header__burger" aria-label="תפריט"><span></span><span></span><span></span></button>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <!-- Warm mood gradient: fallback base + reduced-motion still -->
+        <div class="ph"></div>
+        <!-- Cinematic loop. Muted + autoplay + loop + playsinline = silent autoplay across browsers. -->
+        <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg">
+          <source src="assets/hero.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <h1 class="hero__wordmark serif">GelByNoa</h1>
+      <p class="hero__sub">אקדמיית בוטיק ללימודי ציפורניים · תל אביב</p>
+      <div class="hero__actions">
+        <a href="#courses" class="btn btn--ghost-light">לצפייה בקורסים</a>
+        <a href="#invite" class="btn btn--ghost-light">לשיחת ייעוץ אישית</a>
+      </div>
+    </section>
+
+    <!-- ============ FOUNDER (seamless transition out of the hero) ============ -->
+    <section class="founder" id="founder">
+      <!-- ============ MARQUEE (behind portrait) ============ -->
+      <div class="marquee marquee--behind-portrait" aria-hidden="true">
+        <div class="marquee__track">
+          <span class="marquee__item">ליווי אישי</span><span class="marquee__dot"></span>
+          <span class="marquee__item">סטנדרט גבוה</span><span class="marquee__dot"></span>
+          <span class="marquee__item">מקצועיות</span><span class="marquee__dot"></span>
+          <span class="marquee__item">בטחון</span><span class="marquee__dot"></span>
+          <span class="marquee__item">דיוק</span><span class="marquee__dot"></span>
+          <!-- duplicate for seamless loop -->
+          <span class="marquee__item">ליווי אישי</span><span class="marquee__dot"></span>
+          <span class="marquee__item">סטנדרט גבוה</span><span class="marquee__dot"></span>
+          <span class="marquee__item">מקצועיות</span><span class="marquee__dot"></span>
+          <span class="marquee__item">בטחון</span><span class="marquee__dot"></span>
+          <span class="marquee__item">דיוק</span><span class="marquee__dot"></span>
+        </div>
+      </div>
+      <figure class="founder__portrait">
+        <img src="assets/noa-portrait.jpg" alt="נעה דוידוביץ', מייסדת GelByNoa" />
+      </figure>
+      <div class="founder__intro shell reveal">
+        <h2 class="founder__hi serif">היי! אני נעה</h2>
+        <div class="founder__letter">
+          <p>נעים מאד 🤍</p>
+          <p>הקמתי את GelByNoa Academy אחרי 8 שנים בתחום, מתוך אהבה עמוקה למקצוע.</p>
+          <p>בשנים האחרונות ליוויתי לקוחות ותלמידות, והבנתי שההבדל בין מניקוריסטית טובה למניקוריסטית מובילה הוא הלמידה, האכפתיות, ההשקעה וההבנה שמאחורי כל עבודה יפה עומדת טכניקה מדויקת, ידע מעמיק ובעיקר המון רצון להצליח.</p>
+          <p>האני מאמין שלי הוא לימוד מתוך ניסיון אמיתי מהקליניקה, בליווי אישי צמוד לאורך כל הדרך — עם דגש על דיוק, הכימיה של החומרים, עבודה נכונה והכי חשוב — בניית בטחון מקצועי!<br />לא עוד קורס מבלבל שתצאי ממנו עם סימני שאלה, אחד כזה שתרגישי שהרווחת בו כלים ממשיים.</p>
+          <p class="founder__punch">זאת לא רק כניסה לעולם הזה,<br />המטרה שלי היא לתת לך בסיס לקריירה שתוכלי להיות גאה בה!</p>
+        </div>
+        <img src="assets/logo-web.png" alt="GelByNoa" class="founder__signature-logo" />
+        <span class="founder__role">נעה דוידוביץ' · מייסדת GelByNoa</span>
+      </div>
+    </section>
+
+    <!-- ============ FACTS STRIP ============ -->
+    <section class="section" style="background: var(--bone); padding-block: 7rem;">
+      <div class="shell facts reveal">
+        <div><div class="fact__num serif">2018</div><div class="fact__label">שנת ההקמה</div></div>
+        <div><div class="fact__num serif" data-experience-since="2018">8</div><div class="fact__label">שנות ניסיון</div></div>
+        <div><div class="fact__num serif">2</div><div class="fact__label">תלמידות בקורס</div></div>
+        <div><div class="fact__num serif">תל אביב</div><div class="fact__label">מיקום</div></div>
+      </div>
+    </section>
+
+    <!-- ============ APPROACH (editorial splits) ============ -->
+    <section class="section shell" id="approach" style="padding-block-start: var(--s-4); padding-block-end: 7rem;">
+      <div style="text-align:center; margin-bottom: var(--s-6);">
+        <h2 class="serif reveal" style="font-size: var(--fs-h2);">האני מאמין שלי</h2>
+      </div>
+      <div class="split reveal">
+        <div class="figure split__figure">
+          <img src="assets/attention-1on1.jpg" alt="ליווי אישי 1:1 בקורס" style="object-position: 50% 15%;" />
+        </div>
+        <div class="split__body">
+          <span class="split__num serif">01</span>
+          <h3 class="split__title serif">1:1,<br />תשומת לב מלאה</h3>
+          <p class="split__text">
+            מרגע שיחת הטלפון שלנו ועד סוף הקורס — כל התהליך מותאם אלייך.
+          </p>
+          <a href="about.html" class="link-underline split__link">בואי נכיר</a>
+        </div>
+      </div>
+
+      <div class="split split--reverse reveal">
+        <div class="figure split__figure">
+          <img src="assets/noa-portrait-guidance.jpg" alt="נעה דוידוביץ' בסטודיו" style="object-position: 50% 22%;" />
+        </div>
+        <div class="split__body">
+          <span class="split__num serif">02</span>
+          <h3 class="split__title serif">ליווי אישי,<br />מהיסוד ועד המקצוע</h3>
+          <p class="split__text">
+            ליווי לאורך כל הדרך, גם הרבה אחרי שהתעודה בידיים שלך. כל הספקים שלי, כל סודות המקצוע, כל הטיפים, גם בהמשך הדרך המקצועית שלך — תמיד יהיה לך למי לפנות.
+          </p>
+          <a href="contact.html" class="link-underline split__link">בואי נדבר</a>
+        </div>
+      </div>
+
+      <div class="split reveal">
+        <div class="figure split__figure">
+          <img src="assets/gel-nails.jpg" alt="ציפורניים בעבודת ג'ל" style="object-position: 50% 42%;" />
+        </div>
+        <div class="split__body">
+          <span class="split__num serif">03</span>
+          <h3 class="split__title serif">סטנדרט<br />ללא פשרות</h3>
+          <p class="split__text">
+            אני לא שואפת ל"מספיק טוב", אני מאמינה בדיוק עד הפרט האחרון. הדבר מתאפשר רק בהבנה לעומק של כל שלב ושלב, המשמעויות והבנה בכימיה של החומרים. אני מאמינה בלהעמיק בכל נקודה כדי שתדעי בדיוק מה המשמעויות של כל פעולה שאת מבצעת ותעבדי מתוך ידע מקצועי ולא מתוך אוטומט.
+          </p>
+          <a href="index.html#courses" class="link-underline split__link">הקורסים שלי</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COURSES PREVIEW ============ -->
+    <section class="section shell courses" id="courses">
+      <div class="courses__head">
+        <div class="reveal">
+          <h2 class="serif" style="font-size: var(--fs-h2);">הקורסים</h2>
+        </div>
+      </div>
+
+      <div class="courses__grid courses__grid--three">
+        <div class="course-card reveal">
+          <div class="course-card__badge">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="17" y="25" width="14" height="14" rx="2.5"/>
+              <path d="M17 32h14"/>
+              <path d="M21.5 25v-2h5v2"/>
+              <rect x="19.5" y="6" width="9" height="6.5" rx="1.6"/>
+              <path d="M24 12.5v3.3"/>
+              <path d="M24 15.8c-1.1 0-1.8 1.1-1.4 2.6l1.4 2.4 1.4-2.4c.4-1.5-.3-2.6-1.4-2.6Z"/>
+            </svg>
+          </div>
+          <h3 class="course-card__title serif">קורס מתחילות</h3>
+          <span class="course-card__name">היסוד</span>
+          <p class="course-card__desc">קורס לק ג׳ל למתחילות — למי שמתחילה מ־0, ללא ניסיון קודם.</p>
+          <span class="course-card__rule"><i>✦</i></span>
+          <div class="course-card__meta">
+            <p class="course-card__meta-lead">4 מפגשים · ליווי אישי</p>
+            <p>צעד אחר צעד להצלחה</p>
+            <p>20 שעות לימוד ויש לך מקצוע</p>
+          </div>
+          <a href="course.html" class="course-card__link btn">לפרטים על הקורס</a>
+        </div>
+
+        <div class="course-card reveal" data-delay="1">
+          <div class="course-card__badge">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15.5 9 H32.5"/>
+              <path d="M15.5 39 H32.5"/>
+              <path d="M17.5 9 H30.5 L24 23.5 Z"/>
+              <path d="M17.5 39 H30.5 L24 24.5 Z"/>
+              <path d="M20 12.5 H28 L24 19.5 Z" fill="currentColor" stroke="none"/>
+              <path d="M24 20 V31.5" stroke-width="1.2"/>
+              <path d="M20.6 39 24 33 27.4 39 Z" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <h3 class="course-card__title serif">השתלמות NEXT LEVEL</h3>
+          <span class="course-card__name">בין לבין</span>
+          <p class="course-card__desc">מתאים למי שמרגישה שלא ניתנו לה מספיק כלים, למי שרוצה רענון ודיוק.</p>
+          <span class="course-card__rule"><i>✦</i></span>
+          <div class="course-card__meta">
+            <p class="course-card__meta-lead">2 מפגשים · שילוב בין תאוריה ופרקטיקה</p>
+            <p>ליווי אישי, צעד אחר צעד עד שתרגישי מוכנה</p>
+          </div>
+          <a href="course-beinlevein.html" class="course-card__link btn">לפרטים על ההשתלמות</a>
+        </div>
+
+        <div class="course-card reveal" data-delay="2">
+          <div class="course-card__badge">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M11 32.5 9.2 17l8.3 6.2L24 13.5l6.5 9.7 8.3-6.2L37 32.5z"/>
+              <path d="M11 32.5h26"/>
+            </svg>
+          </div>
+          <h3 class="course-card__title serif">השתלמות מקצועיות</h3>
+          <span class="course-card__name">LEVEL UP</span>
+          <p class="course-card__desc">קורס העלאת רמה, למקצועיות שעוסקות בתחום.</p>
+          <span class="course-card__rule"><i>✦</i></span>
+          <div class="course-card__meta">
+            <p class="course-card__meta-lead">מפגש מקצועי יומי</p>
+            <p>מעבר על טכניקות חדשות ומתקדמות, דיוק, שליטה ובטחון</p>
+          </div>
+          <a href="course-miktzoiot.html" class="course-card__link btn">לפרטים על ההשתלמות</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS (real messages, restyled as chat) ============ -->
+    <section class="section testimonials" id="testimonials">
+      <div class="shell">
+        <div class="testimonials__head reveal">
+          <span class="eyebrow">הודעות מהבוגרות</span>
+          <h2 class="serif" style="font-size: var(--fs-h2); margin-top: var(--s-2);">אתן כותבות</h2>
+        </div>
+        <div class="chat">
+          <div class="chat__bubble chat__bubble--start reveal">
+            <div class="chat__body">
+              <p class="chat__text">היה לי פשוט מושלם! הקורס הועבר בצורה מקצועית, ברורה ונעימה. הצלחת לגרום לי להרגיש בנוח לאורך כל הדרך — הרגשתי שיש מקום לשאול, ללמוד ולהתנסות בלי לחץ. יצאתי עם המון ידע, ביטחון וחוויה ממש טובה. תודה על הסבלנות, היחס והדרך המדהימה שבה העברת את הקורס.</p>
+              <span class="chat__author">מאיה סאקס · בוגרת קורס מתחילות</span>
+              <span class="chat__time">16:06</span>
+            </div>
+            <img class="chat__shot" src="assets/review-1.jpg" alt="צילום מסך ההודעה של מאיה" loading="lazy" />
+            <span class="chat__react" aria-hidden="true">❤️</span>
+          </div>
+          <div class="chat__bubble chat__bubble--end reveal" data-delay="1">
+            <div class="chat__body">
+              <p class="chat__text">השתלמות מקצה לקצה, עם המון סבלנות וירידה לפרטים, שנותנת ביטחון ולא פחות חשוב — גם ליווי להמשך הדרך. הרווחתי המון ידע וגם קולגה שאני יכולה להתייעץ איתה, לשתף וללמוד ממנה.</p>
+              <span class="chat__author">נעה ימיני · בוגרת השתלמות מקצועיות</span>
+              <span class="chat__time">21:39</span>
+            </div>
+            <img class="chat__shot" src="assets/review-2.jpg" alt="צילום מסך ההודעה של נעה" loading="lazy" />
+            <span class="chat__react" aria-hidden="true">❤️</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INVITATION / CTA ============ -->
+    <section class="section invite" id="invite">
+      <div class="invite__bg" aria-hidden="true">
+        <div class="ph"><span class="ph__tag">Replace · atmospheric studio — warm, quiet, inviting</span></div>
+      </div>
+      <div class="shell reveal">
+        <span class="eyebrow">הצטרפות</span>
+        <h2 class="invite__title">אם הגעת עד כאן,</h2>
+        <p class="invite__text">
+          אשמח להכיר אותך קצת בשיחת ייעוץ אישית<br />ולמצוא יחד את המסלול הנכון עבורך.
+        </p>
+        <a href="contact.html" class="btn btn--ghost-light">לשיחת ייעוץ אישית</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand serif">GelByNoa</div>
+          <p class="footer__tag">אקדמיית בוטיק ללימודי ציפורניים. סטנדרט ללא פשרות וליווי אישי לאורך כל הדרך.</p>
+        </div>
+        <div class="footer__col">
+          <h4>ניווט</h4>
+          <a href="about.html">אודות</a>
+          <a href="courses.html">הקורסים</a>
+          <a href="results.html">בוגרות</a>
+          <a href="gallery.html">גלריה</a>
+          <a href="faq.html">שאלות נפוצות</a>
+        </div>
+        <div class="footer__col">
+          <h4>יצירת קשר</h4>
+          <a href="https://gelbynoa.co.il" target="_blank" rel="noopener">gelbynoa.co.il</a>
+          <a href="https://wa.me/972523335922" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://instagram.com/gelbynoacademy" target="_blank" rel="noopener">Instagram</a>
+          <a href="contact.html">תל אביב</a>
+        </div>
+      </div>
+      <div class="footer__seal-wrap"><img src="assets/logo-web.png" alt="GelByNoa" class="footer__logo" /></div>
+      <div class="footer__base">
+        <span>© 2026 GelByNoa Academy</span>
+        <span>נבנה ע״י נעה דוידוביץ׳ עם המון קפה ומאצ׳ה בריפיל :) · כל הזכויות שמורות</span>
+      </div>
+    </div>
+  </footer>
+  <!-- Floating WhatsApp -->
+  <a class="wa-float" href="https://wa.me/972523335922?text=%D7%94%D7%99%D7%99%20%D7%A0%D7%A2%D7%94%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%AA%D7%99%D7%99%D7%A2%D7%A5%20%D7%90%D7%99%D7%AA%D7%9A%20%D7%91%D7%A0%D7%95%D7%92%D7%A2%20%D7%9C%D7%A7%D7%95%D7%A8%D7%A1/%20%D7%94%D7%A9%D7%AA%D7%9C%D7%9E%D7%95%D7%AA" target="_blank" rel="noopener" aria-label="פנייה בוואטסאפ">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+
+  <script src="script.js?v=99"></script>
+</body>
+</html>

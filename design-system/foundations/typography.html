@@ -1,0 +1,37 @@
+<!-- @dsCard group="Foundations" name="Typography" subtitle="Frank Ruhl Libre display · Assistant body · bilingual" viewport="960x680" -->
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GelByNoa — Typography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500&family=Assistant:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--porcelain:#F7F3EE;--ink:#211C18;--taupe:#8B8078;--rose-deep:#A9857A;--sand:#D8C7B8;
+    --serif:"Frank Ruhl Libre",Georgia,serif;--sans:"Assistant",system-ui,sans-serif;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);font-weight:300;color:var(--ink);background:var(--porcelain);padding:56px}
+  .eyebrow{font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--rose-deep)}
+  .row{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--sand)}
+  .row:last-child{border-bottom:none}
+  .meta{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe);line-height:1.7;text-align:start}
+  .serif{font-family:var(--serif);font-weight:300;line-height:1.02;letter-spacing:-.01em}
+  .d-display{font-size:4.6rem}
+  .d-h1{font-size:3rem}
+  .d-h2{font-size:2.1rem}
+  .d-lead{font-family:var(--sans);font-weight:300;font-size:1.35rem}
+  .d-body{font-family:var(--sans);font-weight:300;font-size:1.05rem;line-height:1.75;max-width:52ch}
+  .d-eyebrow{font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--rose-deep)}
+</style>
+</head>
+<body>
+  <span class="eyebrow" style="display:block;margin-bottom:1.6rem">Foundations · Typography</span>
+  <div class="row"><div class="meta">Display<br>Frank Ruhl 300</div><div class="serif d-display">GelByNoa · דיוק</div></div>
+  <div class="row"><div class="meta">Heading 1<br>Frank Ruhl 300</div><div class="serif d-h1">אמנות הציפורניים</div></div>
+  <div class="row"><div class="meta">Heading 2<br>Frank Ruhl 300</div><div class="serif d-h2">קבוצות קטנות, תשומת לב מלאה</div></div>
+  <div class="row"><div class="meta">Lead<br>Assistant 300</div><div class="d-lead">מרחב שבו כל תלמידה הופכת מדייקנות למאסטריות.</div></div>
+  <div class="row"><div class="meta">Body<br>Assistant 300</div><div class="d-body">אנחנו מלמדות טכניקות ג'ל מתקדמות בקבוצות אינטימיות, בליווי אישי וצמוד, ובסטנדרט שאינו מתפשר.</div></div>
+  <div class="row"><div class="meta">Eyebrow<br>Assistant 400 · .42em</div><div class="d-eyebrow">הפילוסופיה שלנו</div></div>
+</body>
+</html>

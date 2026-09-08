@@ -1,0 +1,43 @@
+<!-- @dsCard group="Components" name="Header" subtitle="RTL nav · wordmark right · transparent → solid" viewport="960x260" -->
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GelByNoa — Header</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300&family=Assistant:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{--porcelain:#F7F3EE;--ink:#211C18;--sand:#D8C7B8;--rose-deep:#A9857A;
+    --serif:"Frank Ruhl Libre",Georgia,serif;--sans:"Assistant",system-ui,sans-serif;--ease:cubic-bezier(.16,1,.3,1);}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);font-weight:300;color:var(--ink);background:var(--porcelain);padding:40px 0}
+  .lbl{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#8B8078;padding:0 40px;margin-bottom:12px;display:block}
+  .header{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:1px solid var(--sand)}
+  .header--dark{background:#2E2723;border-bottom:none;color:var(--porcelain)}
+  .brand{font-family:var(--serif);font-weight:300;font-size:1.5rem;letter-spacing:.14em}
+  .nav{display:flex;gap:2rem;align-items:center}
+  .nav a{font-size:.78rem;letter-spacing:.1em;opacity:.85;color:inherit;text-decoration:none}
+  .cta{border:1px solid currentColor;padding:.7em 1.5em;opacity:1!important}
+</style>
+</head>
+<body>
+  <span class="lbl">Solid (on scroll)</span>
+  <header class="header">
+    <a class="brand">GelByNoa</a>
+    <nav class="nav">
+      <a>אודות נועה</a><a>הקורסים</a><a>בוגרות</a><a>גלריה</a><a>שאלות נפוצות</a>
+      <a class="cta">הרשמה</a>
+    </nav>
+  </header>
+
+  <span class="lbl" style="margin-top:36px">Transparent (over hero)</span>
+  <header class="header header--dark">
+    <a class="brand">GelByNoa</a>
+    <nav class="nav">
+      <a>אודות נועה</a><a>הקורסים</a><a>בוגרות</a><a>גלריה</a><a>שאלות נפוצות</a>
+      <a class="cta">הרשמה</a>
+    </nav>
+  </header>
+</body>
+</html>

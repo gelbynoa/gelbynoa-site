@@ -1,0 +1,42 @@
+<!-- @dsCard group="Foundations" name="Color" subtitle="Warm near-monochrome · 7 tones · one accent" viewport="960x560" -->
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GelByNoa — Color</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400&family=Assistant:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --porcelain:#F7F3EE;--bone:#EFE8DF;--ink:#211C18;--taupe:#8B8078;
+    --rose:#C7A79C;--rose-deep:#A9857A;--sand:#D8C7B8;
+    --serif:"Frank Ruhl Libre",Georgia,serif;--sans:"Assistant",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);font-weight:300;color:var(--ink);background:var(--porcelain);padding:56px}
+  .eyebrow{font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--rose-deep)}
+  h1{font-family:var(--serif);font-weight:300;font-size:2.4rem;margin:.4rem 0 2.6rem}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .sw{border:1px solid rgba(33,28,24,.08)}
+  .sw__chip{height:120px}
+  .sw__body{padding:14px 16px;background:#fff}
+  .sw__name{font-weight:500;font-size:.9rem}
+  .sw__hex{font-size:.78rem;letter-spacing:.08em;color:var(--taupe);text-transform:uppercase}
+  .sw__use{font-size:.72rem;color:var(--taupe);margin-top:6px}
+</style>
+</head>
+<body>
+  <span class="eyebrow">Foundations</span>
+  <h1>Color</h1>
+  <div class="grid">
+    <div class="sw"><div class="sw__chip" style="background:#F7F3EE"></div><div class="sw__body"><div class="sw__name">Porcelain</div><div class="sw__hex">#F7F3EE</div><div class="sw__use">Primary paper</div></div></div>
+    <div class="sw"><div class="sw__chip" style="background:#EFE8DF"></div><div class="sw__body"><div class="sw__name">Bone</div><div class="sw__hex">#EFE8DF</div><div class="sw__use">Secondary surface</div></div></div>
+    <div class="sw"><div class="sw__chip" style="background:#211C18"></div><div class="sw__body"><div class="sw__name">Ink</div><div class="sw__hex">#211C18</div><div class="sw__use">Primary text</div></div></div>
+    <div class="sw"><div class="sw__chip" style="background:#8B8078"></div><div class="sw__body"><div class="sw__name">Taupe</div><div class="sw__hex">#8B8078</div><div class="sw__use">Secondary text</div></div></div>
+    <div class="sw"><div class="sw__chip" style="background:#C7A79C"></div><div class="sw__body"><div class="sw__name">Dusk Rose</div><div class="sw__hex">#C7A79C</div><div class="sw__use">The one accent</div></div></div>
+    <div class="sw"><div class="sw__chip" style="background:#A9857A"></div><div class="sw__body"><div class="sw__name">Rose Deep</div><div class="sw__hex">#A9857A</div><div class="sw__use">Active accent</div></div></div>
+    <div class="sw"><div class="sw__chip" style="background:#D8C7B8"></div><div class="sw__body"><div class="sw__name">Sand</div><div class="sw__hex">#D8C7B8</div><div class="sw__use">Hairline dividers</div></div></div>
+  </div>
+</body>
+</html>

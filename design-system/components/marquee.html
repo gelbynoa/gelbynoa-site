@@ -1,0 +1,42 @@
+<!-- @dsCard group="Components" name="Value Marquee" subtitle="Slow silent scroll of brand values" viewport="960x300" -->
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GelByNoa — Marquee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300&family=Assistant:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root{--porcelain:#F7F3EE;--ink:#211C18;--taupe:#8B8078;--rose:#C7A79C;--rose-deep:#A9857A;--sand:#D8C7B8;
+    --serif:"Frank Ruhl Libre",Georgia,serif;--sans:"Assistant",system-ui,sans-serif;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--ink);background:var(--porcelain);padding:56px 0}
+  .eyebrow{font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--rose-deep);padding:0 56px;margin-bottom:2rem;display:block}
+  .marquee{border-block:1px solid var(--sand);padding-block:1.25rem;overflow:hidden;white-space:nowrap}
+  .track{display:inline-flex;gap:3.25rem;align-items:center;animation:slide 30s linear infinite}
+  .item{font-family:var(--serif);font-size:1.9rem;font-weight:300;color:var(--taupe)}
+  .dot{width:5px;height:5px;border-radius:50%;background:var(--rose)}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(50%)}}
+</style>
+</head>
+<body>
+  <span class="eyebrow">Components · Value Marquee</span>
+  <div class="marquee">
+    <div class="track">
+      <span class="item">דיוק</span><span class="dot"></span>
+      <span class="item">אמנות</span><span class="dot"></span>
+      <span class="item">ליווי אישי</span><span class="dot"></span>
+      <span class="item">סטנדרט ללא פשרות</span><span class="dot"></span>
+      <span class="item">שקט</span><span class="dot"></span>
+      <span class="item">מקצועיות</span><span class="dot"></span>
+      <span class="item">דיוק</span><span class="dot"></span>
+      <span class="item">אמנות</span><span class="dot"></span>
+      <span class="item">ליווי אישי</span><span class="dot"></span>
+      <span class="item">סטנדרט ללא פשרות</span><span class="dot"></span>
+      <span class="item">שקט</span><span class="dot"></span>
+      <span class="item">מקצועיות</span><span class="dot"></span>
+    </div>
+  </div>
+</body>
+</html>
