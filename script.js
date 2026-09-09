@@ -40,10 +40,6 @@
     var links = document.createElement("div");
     links.className = "mnav__links";
     links.innerHTML = navSource.innerHTML;
-    var navLabel = document.createElement("span");
-    navLabel.className = "mnav__label eyebrow";
-    navLabel.textContent = "ניווט";
-    drawer.appendChild(navLabel);
     drawer.appendChild(links);
     // The CTA now lives outside the nav — clone it into a contact group.
     var headerCta = document.querySelector(".header > .header__cta");
