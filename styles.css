@@ -571,8 +571,36 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 .chat__body { display: flex; flex-direction: column; padding: var(--s-3) var(--s-4); border-radius: inherit; }
 /* Hover: the real screenshot takes over and the bubble grows to fit it fully */
 .chat__shot { display: none; width: 100%; height: auto; border-radius: inherit; }
-.chat__bubble:hover .chat__body { display: none; }
-.chat__bubble:hover .chat__shot { display: block; }
+/* Desktop: reveal the screenshot on real hover only (avoids a sticky tap-hover on touch) */
+@media (hover: hover) {
+  .chat__bubble:hover .chat__body { display: none; }
+  .chat__bubble:hover .chat__shot { display: block; }
+  .chat__bubble:hover .chat__react { opacity: 0; }
+}
+/* Touch: an explicit tap flips via .is-flipped (wired in script.js) */
+.chat__bubble.is-flipped .chat__body { display: none; }
+.chat__bubble.is-flipped .chat__shot { display: block; }
+.chat__bubble.is-flipped .chat__react { opacity: 0; }
+/* Mobile affordance: a clear "view the original message" control */
+.chat__flip {
+  display: none; align-self: flex-start; align-items: center; gap: 0.5em;
+  margin-top: var(--s-3); padding: 0.55em 1.1em;
+  border: 1px solid var(--sand); border-radius: 999px; background: transparent;
+  color: var(--rose-deep); font: inherit; font-size: 0.78rem; letter-spacing: 0.03em; cursor: pointer;
+}
+.chat__flip svg { width: 15px; height: 15px; }
+.chat__back {
+  display: none; position: absolute; top: 12px; inset-inline-end: 12px; z-index: 4;
+  align-items: center; gap: 0.4em; padding: 0.45em 0.9em; border: 0; border-radius: 999px;
+  background: rgba(33, 28, 24, 0.6); color: var(--porcelain);
+  font: inherit; font-size: 0.74rem; letter-spacing: 0.03em; cursor: pointer;
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+}
+@media (hover: none) {
+  .chat__flip { display: inline-flex; }
+  .chat__bubble.is-flipped .chat__flip { display: none; }
+  .chat__bubble.is-flipped .chat__back { display: inline-flex; }
+}
 .chat__text { color: var(--ink); font-size: 0.95rem; line-height: 1.62; }
 .chat__author { display: block; margin-top: var(--s-2); font-size: 0.74rem; letter-spacing: 0.08em; color: var(--rose-deep); }
 .chat__time { display: block; margin-top: var(--s-1); font-size: 0.7rem; letter-spacing: 0.06em; color: var(--taupe); }
@@ -584,7 +612,6 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   box-shadow: 0 6px 14px rgba(33, 28, 24, 0.10);
   transition: opacity 0.4s var(--ease);
 }
-.chat__bubble:hover .chat__react { opacity: 0; }
 .chat__bubble--start .chat__react { inset-inline-start: 22px; }
 .chat__bubble--end .chat__react { inset-inline-end: 22px; }
 .testimonials__note { text-align: center; margin-top: calc(var(--s-6) + 6px); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose-deep); }

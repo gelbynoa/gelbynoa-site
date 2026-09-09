@@ -206,6 +206,31 @@
     }
   }
 
+  /* Testimonials — on touch there's no hover, so give each chat bubble an explicit,
+     obvious control to flip to the original screenshot (and a way back). */
+  var chatBubbles = [].slice.call(document.querySelectorAll(".chat__bubble"));
+  if (chatBubbles.length && window.matchMedia("(hover: none)").matches) {
+    chatBubbles.forEach(function (bubble) {
+      var body = bubble.querySelector(".chat__body");
+      var shot = bubble.querySelector(".chat__shot");
+      if (!body || !shot) return;
+      var flip = document.createElement("button");
+      flip.type = "button";
+      flip.className = "chat__flip";
+      flip.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="12" cy="12" r="3.2"/></svg>צפייה בהודעה המקורית';
+      body.appendChild(flip);
+      var back = document.createElement("button");
+      back.type = "button";
+      back.className = "chat__back";
+      back.innerHTML = '<span aria-hidden="true">✕</span> חזרה';
+      bubble.appendChild(back);
+      flip.addEventListener("click", function (e) { e.stopPropagation(); bubble.classList.add("is-flipped"); });
+      back.addEventListener("click", function (e) { e.stopPropagation(); bubble.classList.remove("is-flipped"); });
+      // tapping the shown screenshot also flips back
+      shot.addEventListener("click", function () { bubble.classList.remove("is-flipped"); });
+    });
+  }
+
   /* Scroll reveal — fade + rise, once.
      IntersectionObserver drives it; a scroll/resize fallback guarantees
      nothing is ever left invisible (covers programmatic scroll & odd renderers). */
