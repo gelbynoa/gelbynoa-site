@@ -936,7 +936,7 @@ font[style] { background: transparent !important; box-shadow: none !important; }
     overflow-x: auto; scroll-snap-type: x mandatory;
     gap: var(--s-2); max-width: none;
     margin-inline: calc(-1 * var(--gutter)); /* full-bleed past the shell padding */
-    padding-block: 34px var(--s-1); padding-inline: 12vw; /* room to centre + peek both sides */
+    padding-block: 40px 40px; padding-inline: 12vw; /* room to centre, peek + halo room */
     scrollbar-width: none; -webkit-overflow-scrolling: touch;
   }
   .courses__grid::-webkit-scrollbar { display: none; }
@@ -944,10 +944,20 @@ font[style] { background: transparent !important; box-shadow: none !important; }
     flex: 0 0 76vw; scroll-snap-align: center;
     min-height: 0; margin-top: 4px;
     padding: var(--s-4) var(--s-3) var(--s-3);
-    transform: scale(0.95); opacity: 0.6;
+    transform: scale(0.95); opacity: 0.6; box-shadow: none;
     transition: transform 0.45s var(--ease), opacity 0.45s var(--ease), box-shadow 0.45s var(--ease);
   }
-  .courses__grid .course-card.is-center { transform: scale(1); opacity: 1; }
+  /* Neutralise the desktop hover lift/shadow on touch (it sticks after a tap and
+     gets clipped by the scroll container — that's the "cut" shadow). */
+  .courses__grid .course-card:hover { transform: scale(0.95); box-shadow: none; }
+  /* Only the centred card gets a soft, even halo hugging all four sides. */
+  .courses__grid .course-card.is-center,
+  .courses__grid .course-card.is-center:hover {
+    transform: scale(1); opacity: 1;
+    box-shadow: 0 0 32px rgba(33, 28, 24, 0.10), 0 10px 26px rgba(33, 28, 24, 0.10); /* fallback */
+    box-shadow: 0 0 32px color-mix(in srgb, var(--accent) 22%, transparent),
+                0 10px 26px color-mix(in srgb, var(--accent) 16%, transparent);
+  }
   /* Compact interior: smaller badge, tighter gaps, button closer to content */
   .course-card__badge { width: 54px; height: 54px; }
   .course-card__title { font-size: 1.4rem; }
