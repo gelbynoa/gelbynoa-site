@@ -503,39 +503,47 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 .courses__grid--three { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
 
 .course-card {
+  --accent: var(--rose-deep);          /* per-card accent (overridden below) */
   position: relative;
   display: flex; flex-direction: column; align-items: center; text-align: center;
   min-height: clamp(430px, 50vh, 560px);
   background: var(--porcelain);
   border: 1px solid var(--sand);
+  border-top: 3px solid var(--accent);  /* subtle colored cap distinguishes each card */
   border-radius: 20px;
   padding: calc(var(--s-5) + 16px) var(--s-4) var(--s-4);
   margin-top: 40px;
   transition: box-shadow 0.6s var(--ease), transform 0.6s var(--ease);
 }
+/* Each course carries its own accent from the warm brand family, so no two
+   cards feel like the same course reopened. */
+.course-card--rose   { --accent: #A9857A; }  /* קורס מתחילות · dusty rose */
+.course-card--mauve  { --accent: #8C6A72; }  /* NEXT LEVEL · muted plum */
+.course-card--bronze { --accent: #A5824F; }  /* LEVEL UP · warm bronze */
 .course-card:hover { box-shadow: 0 26px 60px rgba(33, 28, 24, 0.10); transform: translateY(-4px); }
 .course-card__badge {
   position: absolute; top: 0; left: 50%;
   transform: translate(-50%, -50%);
   width: 72px; height: 72px; border-radius: 50%;
-  background: var(--rose-deep); color: var(--porcelain);
+  background: var(--accent); color: var(--porcelain);
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 12px 26px rgba(169, 133, 122, 0.4);
+  box-shadow: 0 12px 26px rgba(33, 28, 24, 0.22); /* fallback */
+  box-shadow: 0 12px 26px color-mix(in srgb, var(--accent) 42%, transparent);
   transition: transform 0.7s var(--ease);
 }
 .course-card:hover .course-card__badge { transform: translate(-50%, -50%) scale(1.06); }
 .course-card__badge svg { width: 52%; height: auto; }
-.course-card__title { font-family: var(--serif); font-weight: 400; font-size: clamp(1.35rem, 2.1vw, 1.85rem); line-height: 1.15; color: var(--rose-deep); }
+.course-card__title { font-family: var(--serif); font-weight: 400; font-size: clamp(1.35rem, 2.1vw, 1.85rem); line-height: 1.15; color: var(--accent); }
 .course-card__name { margin-top: var(--s-1); font-size: 0.74rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--taupe); }
 .course-card__desc { color: var(--taupe); margin-top: var(--s-3); min-height: 3.5rem; display: flex; align-items: center; justify-content: center; }
 .course-card__rule { display: flex; align-items: center; gap: 0.7em; width: 62%; margin-block: var(--s-3); }
 .course-card__rule::before, .course-card__rule::after { content: ""; flex: 1; height: 1px; background: var(--sand); }
-.course-card__rule i { font-style: normal; font-size: 0.7rem; color: var(--rose); }
+.course-card__rule i { font-style: normal; font-size: 0.7rem; color: var(--accent); }
 .course-card__meta { display: flex; flex-direction: column; justify-content: flex-start; gap: 0.55em; min-height: 5.2rem; margin-bottom: var(--s-4); color: var(--taupe); font-size: 0.86rem; line-height: 1.5; }
-.course-card__meta-lead { color: var(--rose-deep); letter-spacing: 0.04em; }
+.course-card__meta-lead { color: var(--accent); letter-spacing: 0.04em; }
 .course-card__link { align-self: stretch; margin-top: auto; }
-.course-card__link.btn { padding-block: 0.95em; font-size: 0.84rem; border-color: var(--rose-deep); color: var(--rose-deep); }
-.course-card__link.btn:hover { background: var(--rose-deep); color: var(--porcelain); border-color: var(--rose-deep); }
+.course-card__link.btn { padding-block: 0.95em; font-size: 0.84rem; border-color: var(--accent); color: var(--accent); }
+.course-card__link.btn:hover { background: var(--accent); color: var(--porcelain); border-color: var(--accent); }
 @media (max-width: 860px) { .courses__grid, .courses__grid--three { grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; } }
 .courses__dots { display: none; } /* dots are mobile-only (shown in the ≤640 block) */
 

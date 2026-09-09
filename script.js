@@ -113,7 +113,8 @@
       }
       cGrid.parentNode.insertBefore(dots, cGrid.nextSibling);
 
-      var built = false, allCards = [], rafPending = false, jumping = false;
+      var built = false, allCards = [], rafPending = false;
+      var settleTimer = null, dragging = false;
 
       var centeredIndex = function () {
         var cc = cGrid.getBoundingClientRect();
@@ -132,19 +133,33 @@
         var target = card.offsetLeft - (cGrid.clientWidth - card.offsetWidth) / 2;
         cGrid.scrollTo({ left: target, behavior: smooth ? "smooth" : "auto" });
       };
-      var render = function () {
+      // Visual only (runs on every scroll frame): highlight the centered card + dot.
+      var paint = function () {
         rafPending = false;
         var c = centeredIndex();
         for (var i = 0; i < allCards.length; i++) allCards[i].classList.toggle("is-center", i === c);
         var real = ((c % N) + N) % N;
         for (var d = 0; d < dotEls.length; d++) dotEls[d].classList.toggle("is-active", d === real);
-        // Infinite loop: keep the centered card within the middle set
-        if (!jumping) {
-          if (c < N) { jumping = true; centerOn(c + N, false); requestAnimationFrame(function () { jumping = false; }); }
-          else if (c >= 2 * N) { jumping = true; centerOn(c - N, false); requestAnimationFrame(function () { jumping = false; }); }
-        }
       };
-      var onScroll = function () { if (!rafPending) { rafPending = true; requestAnimationFrame(render); } };
+      // Infinite loop: recenter onto the middle (real) set — but ONLY once motion
+      // has fully stopped and no finger is down. The clone we land on looks identical
+      // to its real counterpart, so an instant recenter at rest is seamless (no jump).
+      var recenter = function () {
+        if (dragging || !built) return;
+        var c = centeredIndex();
+        if (c < N) centerOn(c + N, false);
+        else if (c >= 2 * N) centerOn(c - N, false);
+      };
+      var scheduleSettle = function () {
+        if (settleTimer) clearTimeout(settleTimer);
+        settleTimer = setTimeout(recenter, 140);
+      };
+      var onScroll = function () {
+        if (!rafPending) { rafPending = true; requestAnimationFrame(paint); }
+        scheduleSettle();
+      };
+      var onDown = function () { dragging = true; };
+      var onUp = function () { dragging = false; scheduleSettle(); };
       var goToReal = function (idx) {
         if (!built) { cReals[idx].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" }); return; }
         // jump to the nearest instance of this real index, in the middle set
@@ -160,16 +175,30 @@
         allCards = [].slice.call(cGrid.querySelectorAll(".course-card"));
         built = true;
         cGrid.addEventListener("scroll", onScroll, { passive: true });
+        cGrid.addEventListener("pointerdown", onDown, { passive: true });
+        cGrid.addEventListener("pointerup", onUp, { passive: true });
+        cGrid.addEventListener("pointercancel", onUp, { passive: true });
+        cGrid.addEventListener("touchstart", onDown, { passive: true });
+        cGrid.addEventListener("touchend", onUp, { passive: true });
+        if ("onscrollend" in window) cGrid.addEventListener("scrollend", recenter, { passive: true });
         centerOn(N, false); // start on first real
-        render();
+        paint();
       };
       var teardown = function () {
         if (!built) return;
+        if (settleTimer) { clearTimeout(settleTimer); settleTimer = null; }
         cGrid.removeEventListener("scroll", onScroll);
+        cGrid.removeEventListener("pointerdown", onDown);
+        cGrid.removeEventListener("pointerup", onUp);
+        cGrid.removeEventListener("pointercancel", onUp);
+        cGrid.removeEventListener("touchstart", onDown);
+        cGrid.removeEventListener("touchend", onUp);
+        if ("onscrollend" in window) cGrid.removeEventListener("scrollend", recenter);
         [].slice.call(cGrid.querySelectorAll(".course-card.is-clone")).forEach(function (c) { c.parentNode.removeChild(c); });
         cReals.forEach(function (c) { c.classList.remove("is-center"); });
         allCards = [];
         built = false;
+        dragging = false;
       };
       var sync = function () { if (cMq.matches) build(); else teardown(); };
       (cMq.addEventListener ? cMq.addEventListener("change", sync) : cMq.addListener(sync));
