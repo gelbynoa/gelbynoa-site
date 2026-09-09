@@ -541,6 +541,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 .course-card__rule i { font-style: normal; font-size: 0.7rem; color: var(--accent); }
 .course-card__meta { display: flex; flex-direction: column; justify-content: flex-start; gap: 0.55em; min-height: 5.2rem; margin-bottom: var(--s-4); color: var(--taupe); font-size: 0.86rem; line-height: 1.5; }
 .course-card__meta-lead { color: var(--accent); letter-spacing: 0.04em; }
+.course-card__meta-lead strong { font-weight: 700; }
 .course-card__link { align-self: stretch; margin-top: auto; }
 .course-card__link.btn { padding-block: 0.95em; font-size: 0.84rem; border-color: var(--accent); color: var(--accent); }
 .course-card__link.btn:hover { background: var(--accent); color: var(--porcelain); border-color: var(--accent); }
