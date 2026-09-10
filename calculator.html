@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>מחשבון רווחיות לעסק ציפורניים | GelByNoa Academy</title>
+  <meta name="description" content="נוסחת הרווח — מחשבון רווחיות ותמחור לבעלות עסק ציפורניים. גלי כמה כל לקוחה באמת עולה לך, מה הרווח האמיתי שלך וכמה צריך לגבות כדי להרוויח." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:ital,wght@0,300;0,400;0,500;1,400&family=Assistant:wght@200;300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="styles.css?v=106" />
+
+  <!-- SEO:start -->
+  <link rel="canonical" href="https://gelbynoa.co.il/calculator.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="GelByNoa Academy" />
+  <meta property="og:locale" content="he_IL" />
+  <meta property="og:title" content="מחשבון רווחיות לעסק ציפורניים | GelByNoa Academy" />
+  <meta property="og:description" content="נוסחת הרווח — מחשבון רווחיות ותמחור לבעלות עסק ציפורניים. גלי כמה כל לקוחה באמת עולה לך, מה הרווח האמיתי שלך וכמה צריך לגבות כדי להרוויח." />
+  <meta property="og:url" content="https://gelbynoa.co.il/calculator.html" />
+  <meta property="og:image" content="https://gelbynoa.co.il/assets/noa-portrait.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":["EducationalOrganization","LocalBusiness"],"name":"GelByNoa Academy","alternateName":"ג'ל ביי נועה","url":"https://gelbynoa.co.il/","image":"https://gelbynoa.co.il/assets/logo-web.png","description":"אקדמיה לקורסי ציפורניים ולק ג'ל בתל אביב — קורס למתחילות והשתלמויות למתקדמות, בקבוצות קטנות ובליווי אישי.","telephone":"+972523335922","areaServed":"תל אביב","address":{"@type":"PostalAddress","addressLocality":"תל אביב","addressCountry":"IL"},"sameAs":["https://instagram.com/gelbynoacademy"]}
+</script>
+  <!-- SEO:end -->
+
+  <style>
+  /* ================= Profitability Calculator ================= */
+  .calc { max-width: 1240px; margin-inline: auto; padding-inline: var(--gutter); }
+  .calc__grid { display: grid; grid-template-columns: 1.55fr 1fr; gap: clamp(1.75rem, 3vw, 3rem); align-items: start; }
+  @media (max-width: 980px) { .calc__grid { grid-template-columns: 1fr; } }
+
+  /* --- Section cards (inputs) --- */
+  .calc__inputs { display: flex; flex-direction: column; gap: clamp(1.5rem, 2.5vw, 2rem); }
+  .calc-card {
+    background: var(--porcelain);
+    border: 1px solid var(--sand);
+    border-radius: 22px;
+    padding: clamp(1.4rem, 2.4vw, 2.1rem) clamp(1.25rem, 2.2vw, 2rem);
+    box-shadow: 0 18px 46px rgba(33, 28, 24, 0.05);
+  }
+  .calc-card__head { display: flex; align-items: flex-start; gap: 0.95rem; margin-bottom: 0.4rem; }
+  .calc-card__num {
+    flex: none; width: 40px; height: 40px; border-radius: 50%;
+    background: var(--rose-deep); color: var(--porcelain);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 1.25rem; line-height: 1;
+    box-shadow: 0 10px 22px rgba(169, 133, 122, 0.38);
+  }
+  .calc-card__titles { flex: 1; }
+  .calc-card__title { font-family: var(--serif); font-weight: 400; font-size: clamp(1.35rem, 2.4vw, 1.7rem); line-height: 1.15; }
+  .calc-card__sub { color: var(--taupe); font-size: 0.95rem; margin-top: 0.15rem; }
+
+  .calc-tip {
+    display: flex; gap: 0.6rem; align-items: flex-start;
+    background: var(--bone);
+    border: 1px solid var(--sand);
+    border-radius: 14px;
+    padding: 0.85rem 1rem;
+    color: var(--taupe); font-size: 0.9rem; line-height: 1.6;
+    margin: 1rem 0 1.2rem;
+  }
+  .calc-tip svg { flex: none; width: 20px; height: 20px; color: var(--rose-deep); margin-top: 1px; }
+
+  /* --- Input rows --- */
+  .calc-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--sand);
+  }
+  .calc-row:first-of-type { border-top: none; }
+  .calc-row__label { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .calc-row__label > span { font-size: 1.02rem; color: var(--ink); font-weight: 400; }
+  .calc-row__label small { color: var(--taupe); font-size: 0.82rem; line-height: 1.4; }
+
+  .calc-field { position: relative; flex: none; width: clamp(110px, 26vw, 150px); }
+  .calc-field input {
+    width: 100%; font-family: var(--sans); font-size: 1.05rem; font-weight: 400; color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--sand);
+    border-radius: 12px;
+    padding: 0.6rem 0.9rem; padding-inline-start: 2.1rem;
+    text-align: start;
+    transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    -moz-appearance: textfield;
+  }
+  .calc-field input::-webkit-outer-spin-button,
+  .calc-field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .calc-field input:focus { outline: none; border-color: var(--rose-deep); box-shadow: 0 0 0 3px rgba(169,133,122,0.16); }
+  .calc-field input::placeholder { color: #c9beb4; }
+  .calc-field__unit {
+    position: absolute; inset-inline-start: 0.85rem; top: 50%; transform: translateY(-50%);
+    color: var(--taupe); font-size: 0.95rem; pointer-events: none;
+  }
+  .calc-field--wide { width: clamp(120px, 30vw, 170px); }
+
+  /* --- Results panel --- */
+  .calc-results { position: sticky; top: clamp(90px, 12vh, 120px); }
+  .calc-results__inner {
+    background: linear-gradient(160deg, #2b2420 0%, #211c18 100%);
+    color: var(--porcelain);
+    border-radius: 24px;
+    padding: clamp(1.6rem, 2.6vw, 2.3rem) clamp(1.4rem, 2.4vw, 2rem);
+    box-shadow: 0 30px 70px rgba(33, 28, 24, 0.28);
+  }
+  .calc-results__eyebrow { color: var(--rose); letter-spacing: 0.34em; text-transform: uppercase; font-size: 0.78rem; }
+  .calc-results__title { font-family: var(--serif); font-weight: 300; font-size: clamp(1.7rem, 3vw, 2.2rem); margin: 0.25rem 0 1.3rem; }
+
+  .calc-line { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 0.55rem 0; }
+  .calc-line span:first-child { color: rgba(247,243,238,0.72); font-size: 0.96rem; }
+  .calc-line__val { font-family: var(--serif); font-size: 1.15rem; white-space: nowrap; }
+  .calc-sep { height: 1px; background: rgba(247,243,238,0.14); margin: 0.5rem 0; border: none; }
+
+  .calc-hero-figure {
+    text-align: center;
+    background: rgba(247,243,238,0.05);
+    border: 1px solid rgba(247,243,238,0.12);
+    border-radius: 18px;
+    padding: 1.3rem 1rem; margin: 1.1rem 0;
+  }
+  .calc-hero-figure__label { color: var(--rose); font-size: 0.82rem; letter-spacing: 0.16em; text-transform: uppercase; }
+  .calc-hero-figure__num { font-family: var(--serif); font-weight: 400; font-size: clamp(2.4rem, 6vw, 3.2rem); line-height: 1.1; margin-top: 0.3rem; }
+  .calc-hero-figure__sub { color: rgba(247,243,238,0.6); font-size: 0.86rem; margin-top: 0.2rem; }
+  .is-profit { color: #a6c9a0; }
+  .is-loss { color: #e0a89c; }
+
+  .calc-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.82rem; letter-spacing: 0.06em;
+    padding: 0.3rem 0.8rem; border-radius: 999px;
+    margin-top: 0.4rem;
+  }
+  .calc-badge--good { background: rgba(166,201,160,0.16); color: #b6d6b0; }
+  .calc-badge--bad { background: rgba(224,168,156,0.16); color: #e8b6ab; }
+
+  .calc-results__note { color: rgba(247,243,238,0.5); font-size: 0.8rem; line-height: 1.6; margin-top: 1.1rem; }
+  .calc-results__cta { display: block; text-align: center; margin-top: 1.3rem; border-color: rgba(247,243,238,0.55); color: var(--porcelain); }
+  .calc-results__cta:hover { background: var(--porcelain); color: var(--ink); border-color: var(--porcelain); }
+
+  .calc-reset {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    color: var(--taupe); font-size: 0.85rem; letter-spacing: 0.08em;
+    margin-top: 1.6rem; background: none; border: none;
+    border-bottom: 1px solid transparent; padding-bottom: 2px;
+    transition: color 0.4s var(--ease), border-color 0.4s var(--ease);
+  }
+  .calc-reset:hover { color: var(--ink); border-color: var(--sand); }
+
+  @media (max-width: 980px) {
+    .calc-results { position: static; }
+    .calc__inputs { order: 1; }
+    .calc-results { order: 2; }
+  }
+  @media (max-width: 480px) {
+    .calc-row { flex-wrap: wrap; }
+    .calc-field, .calc-field--wide { width: 100%; }
+  }
+  </style>
+</head>
+<body>
+  <header class="header header--page is-solid" id="header">
+    <div class="header__right">
+      <a href="index.html" class="header__brand"><span>GelByNoa<span class="header__academy">cademy</span></span><img src="assets/logo-web.png" alt="" class="header__logo" aria-hidden="true" /></a>
+      <nav class="header__nav" aria-label="ניווט ראשי">
+        <a href="about.html">אודות</a>
+        <div class="header__dropdown">
+          <a href="index.html#courses" class="header__dropdown-toggle">הקורסים<span class="header__caret" aria-hidden="true">▾</span></a>
+          <div class="header__submenu">
+            <a href="course.html">קורס מתחילות · לק ג׳ל במבנה אנטומי</a>
+            <a href="course-beinlevein.html">השתלמות בין לבין · Next Level</a>
+            <a href="course-miktzoiot.html">השתלמות מקצועיות · Level Up</a>
+          </div>
+        </div>
+        <a href="gallery.html">גלריה</a>
+        <a href="calculator.html">מחשבון רווחיות</a>
+        <a href="faq.html">שאלות נפוצות</a>
+      </nav>
+    </div>
+    <div class="header__lang"><button class="header__lang-toggle" aria-label="שפה / Language" aria-haspopup="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3z"/></svg></button><div class="header__lang-menu"><button type="button" data-lang="he">עברית</button><button type="button" data-lang="en">English</button></div></div>
+    <a href="contact.html" class="header__cta">יצירת קשר</a>
+    <button class="header__burger" aria-label="תפריט"><span></span><span></span><span></span></button>
+  </header>
+
+  <main>
+    <section class="page-hero shell">
+      <span class="eyebrow reveal">כלי לבעלות עסק · נוסחת הרווח</span>
+      <h1 class="page-hero__title reveal" data-delay="1">מחשבון רווחיות לעסק</h1>
+      <p class="page-hero__lede reveal" data-delay="2">
+        רוב המניקוריסטיות מתמחרות לפי מחיר שוק — ולא באמת יודעות כמה כל לקוחה עולה להן.
+        הזיני את הנתונים, וגלי בדיוק מה הרווח האמיתי שלך וכמה צריך לגבות כדי להרוויח כמו שמגיע לך.
+      </p>
+    </section>
+
+    <section class="section" style="padding-block-start: 0;">
+      <div class="calc reveal">
+        <div class="calc__grid">
+
+          <!-- ============ INPUTS ============ -->
+          <div class="calc__inputs">
+
+            <!-- 1 · Fixed expenses -->
+            <div class="calc-card">
+              <div class="calc-card__head">
+                <div class="calc-card__num">1</div>
+                <div class="calc-card__titles">
+                  <h2 class="calc-card__title">הוצאות קבועות</h2>
+                  <p class="calc-card__sub">מה שאת משלמת בכל חודש, גם בלי אף לקוחה</p>
+                </div>
+              </div>
+
+              <div class="calc-rows" data-group="fixed">
+                <div class="calc-row"><label class="calc-row__label" for="f-rent"><span>שכירות קליניקה / חדר</span></label><div class="calc-field"><span class="calc-field__unit">₪</span><input id="f-rent" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="fixed" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="f-arnona"><span>ארנונה וועד בית</span></label><div class="calc-field"><span class="calc-field__unit">₪</span><input id="f-arnona" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="fixed" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="f-utils"><span>חשמל ומים</span></label><div class="calc-field"><span class="calc-field__unit">₪</span><input id="f-utils" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="fixed" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="f-phone"><span>אינטרנט וטלפון סלולרי</span></label><div class="calc-field"><span class="calc-field__unit">₪</span><input id="f-phone" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="fixed" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="f-account"><span>רואה חשבון / יועץ מס</span></label><div class="calc-field"><span class="calc-field__unit">₪</span><input id="f-account" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="fixed" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="f-insurance"><span>ביטוח עסק ואחריות מקצועית</span></label><div class="calc-field"><span class="calc-field__unit">₪</span><input id="f-insurance" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="fixed" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="f-marketing"><span>שיווק ופרסום</span><small>תקציב ממומן, קידום באינסטגרם</small></label><div class="calc-field"><span class="calc-field__unit">₪</span><input id="f-marketing" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="fixed" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="f-subs"><span>מנויים דיגיטליים</span><small>מערכת זימון תורים, Canva, אפליקציות עריכה</small></label><div class="calc-field"><span class="calc-field__unit">₪</span><input id="f-subs" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="fixed" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="f-provisions"><span>הפרשות קבועות</span><small>ביטוח לאומי, פנסיה, קרן השתלמות</small></label><div class="calc-field"><span class="calc-field__unit">₪</span><input id="f-provisions" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="fixed" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="f-wear"><span>בלאי ציוד שוטף</span><small>שדרוג מכונות שיוף, מנורות ייבוש, ריהוט</small></label><div class="calc-field"><span class="calc-field__unit">₪</span><input id="f-wear" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="fixed" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="f-training"><span>השתלמויות / קורסים</span><small>פרסי על פני שנה</small></label><div class="calc-field"><span class="calc-field__unit">₪</span><input id="f-training" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="fixed" /></div></div>
+              </div>
+
+              <div class="calc-tip" style="margin-bottom: 0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2Z"/></svg>
+                <span>פרסי את עלות ההשתלמות על פני שנה. לדוגמה: השתלמות ב-2,000 ₪ ÷ 12 חודשים = 166 ₪ עלות חודשית.</span>
+              </div>
+            </div>
+
+            <!-- 2 · Variable expenses -->
+            <div class="calc-card">
+              <div class="calc-card__head">
+                <div class="calc-card__num">2</div>
+                <div class="calc-card__titles">
+                  <h2 class="calc-card__title">הוצאות משתנות וחומרים</h2>
+                  <p class="calc-card__sub">הערכה חודשית לפי צריכה</p>
+                </div>
+              </div>
+
+              <div class="calc-tip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2Z"/></svg>
+                <span>כתבי כמה את מוציאה על כל קטגוריה בחודש ממוצע. אל תוותרי על הקטנים: פצירות, כפפות וקפסולות קפה מצטברים לסכום אמיתי.</span>
+              </div>
+
+              <div class="calc-rows" data-group="variable">
+                <div class="calc-row"><label class="calc-row__label" for="v-base"><span>מוצרי בסיס</span><small>בייס, טופ, פריימר, ג'לים לבנייה ועוד</small></label><div class="calc-field"><span class="calc-field__unit">₪</span><input id="v-base" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="variable" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="v-colors"><span>צבעים</span></label><div class="calc-field"><span class="calc-field__unit">₪</span><input id="v-colors" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="variable" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="v-single"><span>ציוד חד פעמי</span><small>פצירות, בלוקים, דוחפי עור, כפפות, מסכות, נייר סופג, מגבונים</small></label><div class="calc-field"><span class="calc-field__unit">₪</span><input id="v-single" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="variable" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="v-steril"><span>חיטוי ועיקור</span><small>חומרים, שקיות עיקור</small></label><div class="calc-field"><span class="calc-field__unit">₪</span><input id="v-steril" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="variable" /></div></div>
+              </div>
+            </div>
+
+            <!-- 3 · Work data -->
+            <div class="calc-card">
+              <div class="calc-card__head">
+                <div class="calc-card__num">3</div>
+                <div class="calc-card__titles">
+                  <h2 class="calc-card__title">נתוני העבודה שלך</h2>
+                  <p class="calc-card__sub">כמה את גובה, וכמה לקוחות עוברות אצלך בחודש</p>
+                </div>
+              </div>
+
+              <div class="calc-rows">
+                <div class="calc-row"><label class="calc-row__label" for="w-price"><span>מחיר ממוצע לטיפול</span><small>המחיר שאת גובה מלקוחה בממוצע</small></label><div class="calc-field calc-field--wide"><span class="calc-field__unit">₪</span><input id="w-price" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="work" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="w-clients"><span>מספר לקוחות בחודש</span><small>כמה טיפולים את עושה בחודש ממוצע</small></label><div class="calc-field calc-field--wide"><input id="w-clients" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="work" style="padding-inline-start: 0.9rem; text-align:center;" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="w-hours"><span>שעות עבודה בחודש</span><small>לא חובה — לחישוב רווח לשעה</small></label><div class="calc-field calc-field--wide"><input id="w-hours" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="work" style="padding-inline-start: 0.9rem; text-align:center;" /></div></div>
+              </div>
+            </div>
+
+            <button type="button" class="calc-reset" id="calc-reset">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+              איפוס המחשבון
+            </button>
+          </div>
+
+          <!-- ============ RESULTS ============ -->
+          <aside class="calc-results" aria-live="polite">
+            <div class="calc-results__inner">
+              <span class="calc-results__eyebrow">נוסחת הרווח</span>
+              <h2 class="calc-results__title">התוצאה שלך</h2>
+
+              <div class="calc-line"><span>סה"כ הוצאות קבועות</span><span class="calc-line__val" id="r-fixed">0 ₪</span></div>
+              <div class="calc-line"><span>סה"כ הוצאות משתנות</span><span class="calc-line__val" id="r-variable">0 ₪</span></div>
+              <hr class="calc-sep" />
+              <div class="calc-line"><span>סה"כ הוצאה חודשית</span><span class="calc-line__val" id="r-total">0 ₪</span></div>
+
+              <div class="calc-hero-figure">
+                <div class="calc-hero-figure__label">העלות האמיתית לכל לקוחה</div>
+                <div class="calc-hero-figure__num" id="r-cost-per">— ₪</div>
+                <div class="calc-hero-figure__sub">מתחת למחיר הזה — את מפסידה על כל לקוחה</div>
+              </div>
+
+              <div class="calc-line"><span>הכנסה חודשית</span><span class="calc-line__val" id="r-revenue">0 ₪</span></div>
+              <div class="calc-line"><span>רווח לכל לקוחה</span><span class="calc-line__val" id="r-profit-per">— ₪</span></div>
+              <div class="calc-line"><span>רווח לשעת עבודה</span><span class="calc-line__val" id="r-profit-hour">— ₪</span></div>
+              <hr class="calc-sep" />
+
+              <div class="calc-hero-figure">
+                <div class="calc-hero-figure__label">הרווח החודשי שלך</div>
+                <div class="calc-hero-figure__num" id="r-profit">— ₪</div>
+                <div style="margin-top: 0.3rem;"><span class="calc-badge calc-badge--good" id="r-margin-badge" hidden></span></div>
+              </div>
+
+              <p class="calc-results__note">המחשבון נותן הערכה לצורך תמחור נכון והבנת הרווחיות. המספרים נשמרים במכשיר שלך בלבד.</p>
+              <a href="contact.html" class="btn calc-results__cta">רוצה שנתמחר יחד? דברי איתי</a>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section invite" id="invite">
+      <div class="invite__bg" aria-hidden="true"><div class="ph"><span class="ph__tag">Replace · atmospheric studio</span></div></div>
+      <div class="shell reveal">
+        <span class="eyebrow">מהמספרים לעסק רווחי</span>
+        <h2 class="invite__title">עכשיו כשאת יודעת את המספרים</h2>
+        <p class="invite__text">בקורסים ובהשתלמויות שלי את לא רק לומדת טכניקה — את בונה עסק שמכבד את הזמן, הידע והרווח שלך.</p>
+        <a href="index.html#courses" class="btn btn--ghost-light">לצפייה בקורסים</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand serif">GelByNoa</div>
+          <p class="footer__tag">אקדמיית בוטיק ללימודי ציפורניים. סטנדרט ללא פשרות וליווי אישי לאורך כל הדרך.</p>
+        </div>
+        <div class="footer__col">
+          <h4>ניווט</h4>
+          <a href="about.html">אודות</a>
+          <a href="courses.html">הקורסים</a>
+          <a href="results.html">בוגרות</a>
+          <a href="gallery.html">גלריה</a>
+          <a href="calculator.html">מחשבון רווחיות</a>
+          <a href="faq.html">שאלות נפוצות</a>
+        </div>
+        <div class="footer__col">
+          <h4>יצירת קשר</h4>
+          <a href="https://gelbynoa.co.il" target="_blank" rel="noopener">gelbynoa.co.il</a>
+          <a href="https://wa.me/972523335922" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://instagram.com/gelbynoacademy" target="_blank" rel="noopener">Instagram</a>
+          <a href="contact.html">תל אביב</a>
+        </div>
+      </div>
+      <div class="footer__seal-wrap"><img src="assets/logo-web.png" alt="GelByNoa" class="footer__logo" /></div>
+      <div class="footer__base">
+        <span>© 2026 GelByNoa Academy</span>
+        <span>נבנה ע״י נעה דוידוביץ׳ עם המון קפה ומאצ׳ה בריפיל :) · כל הזכויות שמורות</span>
+      </div>
+    </div>
+  </footer>
+  <!-- Floating WhatsApp -->
+  <a class="wa-float" href="https://wa.me/972523335922?text=%D7%94%D7%99%D7%99%20%D7%A0%D7%A2%D7%94%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%AA%D7%99%D7%99%D7%A2%D7%A5%20%D7%90%D7%99%D7%AA%D7%9A%20%D7%91%D7%A0%D7%95%D7%92%D7%A2%20%D7%9C%D7%A7%D7%95%D7%A8%D7%A1/%20%D7%94%D7%A9%D7%AA%D7%9C%D7%9E%D7%95%D7%AA" target="_blank" rel="noopener" aria-label="פנייה בוואטסאפ">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="script.js?v=106"></script>
+  <script>
+  /* ================= Profitability Calculator logic ================= */
+  (function () {
+    var STORAGE_KEY = "gbn-calc-v1";
+    var inputs = [].slice.call(document.querySelectorAll("[data-calc]"));
+    if (!inputs.length) return;
+
+    var nis = new Intl.NumberFormat("he-IL", { maximumFractionDigits: 0 });
+    var fmt = function (n) { return nis.format(Math.round(n)) + " ₪"; };
+    var num = function (el) { var v = parseFloat(el.value); return (isNaN(v) || v < 0) ? 0 : v; };
+    var set = function (id, txt) { var el = document.getElementById(id); if (el) el.textContent = txt; };
+
+    function sumGroup(group) {
+      return inputs.reduce(function (acc, el) {
+        return el.getAttribute("data-calc") === group ? acc + num(el) : acc;
+      }, 0);
+    }
+
+    function calc() {
+      var fixed = sumGroup("fixed");
+      var variable = sumGroup("variable");
+      var total = fixed + variable;
+
+      var price = num(document.getElementById("w-price"));
+      var clients = num(document.getElementById("w-clients"));
+      var hours = num(document.getElementById("w-hours"));
+
+      var revenue = price * clients;
+      var profit = revenue - total;
+
+      set("r-fixed", fmt(fixed));
+      set("r-variable", fmt(variable));
+      set("r-total", fmt(total));
+      set("r-revenue", fmt(revenue));
+
+      // Cost per client (break-even price)
+      set("r-cost-per", clients > 0 ? fmt(total / clients) : "— ₪");
+      // Profit per client
+      set("r-profit-per", clients > 0 ? fmt(profit / clients) : "— ₪");
+      // Profit per hour
+      set("r-profit-hour", hours > 0 ? fmt(profit / hours) : "— ₪");
+
+      // Monthly profit + coloring
+      var profitEl = document.getElementById("r-profit");
+      if (revenue === 0 && total === 0) {
+        profitEl.textContent = "— ₪";
+        profitEl.className = "calc-hero-figure__num";
+      } else {
+        profitEl.textContent = fmt(profit);
+        profitEl.className = "calc-hero-figure__num " + (profit >= 0 ? "is-profit" : "is-loss");
+      }
+
+      // Margin badge
+      var badge = document.getElementById("r-margin-badge");
+      if (revenue > 0) {
+        var margin = (profit / revenue) * 100;
+        badge.hidden = false;
+        badge.textContent = (profit >= 0 ? "רווחיות " : "הפסד ") + Math.abs(Math.round(margin)) + "% מההכנסה";
+        badge.className = "calc-badge " + (profit >= 0 ? "calc-badge--good" : "calc-badge--bad");
+      } else {
+        badge.hidden = true;
+      }
+    }
+
+    function save() {
+      try {
+        var data = {};
+        inputs.forEach(function (el) { if (el.value !== "") data[el.id] = el.value; });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (e) {}
+    }
+
+    function load() {
+      try {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        var data = JSON.parse(raw);
+        inputs.forEach(function (el) { if (data[el.id] != null) el.value = data[el.id]; });
+      } catch (e) {}
+    }
+
+    inputs.forEach(function (el) {
+      el.addEventListener("input", function () { calc(); save(); });
+    });
+
+    var resetBtn = document.getElementById("calc-reset");
+    if (resetBtn) {
+      resetBtn.addEventListener("click", function () {
+        inputs.forEach(function (el) { el.value = ""; });
+        try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+        calc();
+        inputs[0].focus();
+      });
+    }
+
+    load();
+    calc();
+  })();
+  </script>
+</body>
+</html>
