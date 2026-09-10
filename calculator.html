@@ -149,6 +149,61 @@
   }
   .calc-reset:hover { color: var(--ink); border-color: var(--sand); }
 
+  /* --- Dual bottom-line figures --- */
+  .calc-figs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 0.4rem 0 1rem; }
+  .calc-fig { text-align: center; background: rgba(247,243,238,0.05); border: 1px solid rgba(247,243,238,0.12); border-radius: 16px; padding: 1.1rem 0.7rem; }
+  .calc-fig--accent { background: rgba(199,167,156,0.16); border-color: rgba(199,167,156,0.42); }
+  .calc-fig__label { color: var(--rose); font-size: 0.72rem; letter-spacing: 0.08em; line-height: 1.4; }
+  .calc-fig__num { font-family: var(--serif); font-weight: 400; font-size: clamp(1.9rem, 4.6vw, 2.5rem); line-height: 1.05; margin-top: 0.3rem; }
+  .calc-fig__sub { color: rgba(247,243,238,0.55); font-size: 0.72rem; line-height: 1.4; margin-top: 0.35rem; }
+
+  /* --- Status message --- */
+  .calc-status { border-radius: 14px; padding: 0.85rem 1rem; font-size: 0.9rem; line-height: 1.65; margin: 0.4rem 0 0.2rem; }
+  .calc-status strong { color: #fff; font-weight: 500; }
+  .calc-status--loss { background: rgba(224,168,156,0.14); border: 1px solid rgba(224,168,156,0.35); color: #f0cabf; }
+  .calc-status--ok { background: rgba(166,201,160,0.14); border: 1px solid rgba(166,201,160,0.35); color: #c4dcbe; }
+  .calc-status--neutral { background: rgba(247,243,238,0.06); border: 1px solid rgba(247,243,238,0.14); color: rgba(247,243,238,0.7); }
+
+  /* --- Auto clients display pill (section 3) --- */
+  .calc-display { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 0.9rem; background: var(--ink); color: var(--porcelain); border-radius: 14px; padding: 0.75rem 1.1rem; }
+  .calc-display__label { font-size: 0.95rem; }
+  .calc-display__label small { display: block; color: rgba(247,243,238,0.55); font-size: 0.78rem; }
+  .calc-display__val { font-family: var(--serif); font-size: 1.6rem; color: var(--rose); white-space: nowrap; }
+
+  /* --- Extras (table + message + actions) --- */
+  .calc__extras { display: flex; flex-direction: column; gap: clamp(1.5rem, 2.5vw, 2rem); margin-top: clamp(1.5rem, 2.5vw, 2rem); }
+  .calc-card__num--star { background: var(--ink); }
+  .calc-table-wrap { overflow-x: auto; margin-top: 0.5rem; }
+  .calc-table { width: 100%; border-collapse: collapse; min-width: 440px; }
+  .calc-table th { text-align: start; color: var(--taupe); font-weight: 400; font-size: 0.85rem; padding: 0.7rem 0.7rem; border-bottom: 1px solid var(--sand); }
+  .calc-table td { padding: 0.8rem 0.7rem; border-bottom: 1px solid var(--sand); font-family: var(--serif); font-size: 1.08rem; }
+  .calc-table tbody tr.is-current { background: var(--bone); }
+  .calc-table tbody tr.is-current td { color: var(--rose-deep); font-weight: 500; }
+  .calc-table .calc-empty { color: var(--taupe); font-family: var(--sans); font-size: 0.9rem; text-align: center; padding: 1.4rem; }
+
+  /* --- Price-raise message template --- */
+  .calc-msg { width: 100%; min-height: 168px; resize: vertical; font-family: var(--sans); font-size: 0.98rem; line-height: 1.75; color: var(--ink); background: #fff; border: 1px solid var(--sand); border-radius: 14px; padding: 1rem 1.1rem; margin-top: 1rem; }
+  .calc-msg:focus { outline: none; border-color: var(--rose-deep); box-shadow: 0 0 0 3px rgba(169,133,122,0.16); }
+  .calc-copy { margin-top: 0.9rem; }
+  .calc-copy.is-done { background: var(--rose-deep); color: var(--porcelain); border-color: var(--rose-deep); }
+
+  .calc-share { text-align: center; }
+  .calc-share p { color: var(--taupe); max-width: 46ch; margin: 0.4rem auto 0.9rem; }
+  .calc-share a { color: var(--rose-deep); letter-spacing: 0.06em; border-bottom: 1px solid var(--sand); padding-bottom: 2px; }
+
+  .calc-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; align-items: center; }
+  .calc-actions .calc-reset { margin-top: 0; }
+  .calc-foot-note { text-align: center; color: var(--taupe); font-size: 0.82rem; margin-top: 0.4rem; }
+
+  @media print {
+    .header, .footer, .wa-float, .invite, .calc-results__cta, .calc-reset, .calc-actions, .calc-msgbox, .calc-share, .header__burger, .calc-tip { display: none !important; }
+    body { background: #fff; }
+    .calc-results { position: static !important; }
+    .calc-results__inner { background: #fff !important; box-shadow: none; border: 1px solid #ccc; }
+    .calc-results__inner *, .calc-fig__num, .calc-fig__label, .calc-fig__sub { color: #000 !important; }
+    .calc-fig, .calc-fig--accent { background: #f5f5f5 !important; border-color: #ccc !important; }
+  }
+
   @media (max-width: 980px) {
     .calc-results { position: static; }
     .calc__inputs { order: 1; }
@@ -260,56 +315,116 @@
                 <div class="calc-card__num">3</div>
                 <div class="calc-card__titles">
                   <h2 class="calc-card__title">נתוני העבודה שלך</h2>
-                  <p class="calc-card__sub">כמה את גובה, וכמה לקוחות עוברות אצלך בחודש</p>
+                  <p class="calc-card__sub">משכורת, ימים וכמות</p>
                 </div>
               </div>
 
               <div class="calc-rows">
-                <div class="calc-row"><label class="calc-row__label" for="w-price"><span>מחיר ממוצע לטיפול</span><small>המחיר שאת גובה מלקוחה בממוצע</small></label><div class="calc-field calc-field--wide"><span class="calc-field__unit">₪</span><input id="w-price" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="work" /></div></div>
-                <div class="calc-row"><label class="calc-row__label" for="w-clients"><span>מספר לקוחות בחודש</span><small>כמה טיפולים את עושה בחודש ממוצע</small></label><div class="calc-field calc-field--wide"><input id="w-clients" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="work" style="padding-inline-start: 0.9rem; text-align:center;" /></div></div>
-                <div class="calc-row"><label class="calc-row__label" for="w-hours"><span>שעות עבודה בחודש</span><small>לא חובה — לחישוב רווח לשעה</small></label><div class="calc-field calc-field--wide"><input id="w-hours" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="work" style="padding-inline-start: 0.9rem; text-align:center;" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="w-wage"><span>כמה את רוצה להרוויח לשעה?</span><small>לפי זה תיקבע המשכורת החודשית שלך (מתמלאת אוטומטית)</small></label><div class="calc-field calc-field--wide"><span class="calc-field__unit">₪</span><input id="w-wage" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="work" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="w-hoursday"><span>שעות עבודה ביום</span></label><div class="calc-field calc-field--wide"><input id="w-hoursday" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="work" style="padding-inline-start: 0.9rem; text-align:center;" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="w-daysweek"><span>ימי עבודה בשבוע</span></label><div class="calc-field calc-field--wide"><input id="w-daysweek" type="number" inputmode="numeric" min="0" max="7" placeholder="0" data-calc="work" style="padding-inline-start: 0.9rem; text-align:center;" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="w-salary"><span>💰 משכורת חודשית רצויה</span><small>מתמלאת לבד לפי שכר השעה, או מלאי ידנית</small></label><div class="calc-field calc-field--wide"><span class="calc-field__unit">₪</span><input id="w-salary" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="work" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="w-clientsday"><span>ממוצע לקוחות ביום עבודה</span></label><div class="calc-field calc-field--wide"><input id="w-clientsday" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="work" style="padding-inline-start: 0.9rem; text-align:center;" /></div></div>
+                <div class="calc-row"><label class="calc-row__label" for="w-price"><span>מחיר ממוצע נוכחי לטיפול</span><small>לא חובה — לבדיקת רווחיות</small></label><div class="calc-field calc-field--wide"><span class="calc-field__unit">₪</span><input id="w-price" type="number" inputmode="numeric" min="0" placeholder="0" data-calc="work" /></div></div>
+              </div>
+
+              <div class="calc-display">
+                <div class="calc-display__label">סך הלקוחות שלך בחודש<small>מחושב אוטומטית</small></div>
+                <div class="calc-display__val" id="r-clients-display">—</div>
               </div>
             </div>
 
-            <button type="button" class="calc-reset" id="calc-reset">
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
-              איפוס המחשבון
-            </button>
           </div>
 
           <!-- ============ RESULTS ============ -->
           <aside class="calc-results" aria-live="polite">
             <div class="calc-results__inner">
-              <span class="calc-results__eyebrow">נוסחת הרווח</span>
+              <span class="calc-results__eyebrow">★ השורה התחתונה שלך ★</span>
               <h2 class="calc-results__title">התוצאה שלך</h2>
 
+              <div class="calc-figs">
+                <div class="calc-fig">
+                  <div class="calc-fig__label">עלות אמיתית ללקוחה</div>
+                  <div class="calc-fig__num" id="r-cost-per">— ₪</div>
+                  <div class="calc-fig__sub">כמה כל לקוחה עולה לך, לפני שהרווחת שקל</div>
+                </div>
+                <div class="calc-fig calc-fig--accent">
+                  <div class="calc-fig__label">המינימום כדי לא להפסיד</div>
+                  <div class="calc-fig__num" id="r-min-price">— ₪</div>
+                  <div class="calc-fig__sub">המחיר שמכסה את כל ההוצאות והמשכורת שלך</div>
+                </div>
+              </div>
+
+              <div class="calc-status calc-status--neutral" id="r-status">מלאי את הנתונים, ואת "מחיר ממוצע נוכחי לטיפול", כדי לגלות אם את ברווח או בהפסד.</div>
+
+              <hr class="calc-sep" />
               <div class="calc-line"><span>סה"כ הוצאות קבועות</span><span class="calc-line__val" id="r-fixed">0 ₪</span></div>
               <div class="calc-line"><span>סה"כ הוצאות משתנות</span><span class="calc-line__val" id="r-variable">0 ₪</span></div>
-              <hr class="calc-sep" />
               <div class="calc-line"><span>סה"כ הוצאה חודשית</span><span class="calc-line__val" id="r-total">0 ₪</span></div>
-
-              <div class="calc-hero-figure">
-                <div class="calc-hero-figure__label">העלות האמיתית לכל לקוחה</div>
-                <div class="calc-hero-figure__num" id="r-cost-per">— ₪</div>
-                <div class="calc-hero-figure__sub">מתחת למחיר הזה — את מפסידה על כל לקוחה</div>
-              </div>
-
-              <div class="calc-line"><span>הכנסה חודשית</span><span class="calc-line__val" id="r-revenue">0 ₪</span></div>
-              <div class="calc-line"><span>רווח לכל לקוחה</span><span class="calc-line__val" id="r-profit-per">— ₪</span></div>
-              <div class="calc-line"><span>רווח לשעת עבודה</span><span class="calc-line__val" id="r-profit-hour">— ₪</span></div>
-              <hr class="calc-sep" />
-
-              <div class="calc-hero-figure">
-                <div class="calc-hero-figure__label">הרווח החודשי שלך</div>
-                <div class="calc-hero-figure__num" id="r-profit">— ₪</div>
-                <div style="margin-top: 0.3rem;"><span class="calc-badge calc-badge--good" id="r-margin-badge" hidden></span></div>
-              </div>
+              <div class="calc-line"><span>משכורת חודשית רצויה</span><span class="calc-line__val" id="r-salary">0 ₪</span></div>
+              <div class="calc-line"><span>סך הלקוחות שלך בחודש</span><span class="calc-line__val" id="r-total-clients">—</span></div>
 
               <p class="calc-results__note">המחשבון נותן הערכה לצורך תמחור נכון והבנת הרווחיות. המספרים נשמרים במכשיר שלך בלבד.</p>
               <a href="contact.html" class="btn calc-results__cta">רוצה שנתמחר יחד? דברי איתי</a>
             </div>
           </aside>
 
+        </div>
+
+        <!-- ============ EXTRAS: what-if table + message + actions ============ -->
+        <div class="calc__extras">
+
+          <!-- What-if scenarios -->
+          <div class="calc-card">
+            <div class="calc-card__head">
+              <div class="calc-card__num calc-card__num--star">★</div>
+              <div class="calc-card__titles">
+                <h2 class="calc-card__title">מה אם יהיו לך יותר או פחות לקוחות?</h2>
+                <p class="calc-card__sub">יותר לקוחות = עלות נמוכה יותר לכל אחת</p>
+              </div>
+            </div>
+            <div class="calc-table-wrap">
+              <table class="calc-table">
+                <thead><tr><th>לקוחות בחודש</th><th>עלות ללקוחה לטיפול</th><th>מינימום לגבייה כדי לא להפסיד</th></tr></thead>
+                <tbody id="r-table"><tr><td class="calc-empty" colspan="3">מלאי את נתוני העבודה שלך כדי לראות את התרחישים</td></tr></tbody>
+              </table>
+            </div>
+            <p class="calc-card__sub" style="margin-top: 1rem;">השורה המודגשת היא המצב הנוכחי שלך. שימי לב איך כל לקוחה נוספת מורידה את העלות הקבועה שמתחלקת על כולן.</p>
+          </div>
+
+          <!-- Price-raise message template -->
+          <div class="calc-card calc-msgbox">
+            <div class="calc-card__head">
+              <div class="calc-card__num calc-card__num--star">✎</div>
+              <div class="calc-card__titles">
+                <h2 class="calc-card__title">גילית שצריך להעלות מחירים?</h2>
+                <p class="calc-card__sub">הנה תבנית הודעה מוכנה שתשלחי ללקוחות שלך, בלי להרגיש לא נעים</p>
+              </div>
+            </div>
+            <textarea class="calc-msg" id="calc-msg" aria-label="תבנית הודעה ללקוחות" spellcheck="false">היי יקרה 🤍
+רציתי לעדכן אותך שהחל מתאריך ___ יחול עדכון מחירים קטן בטיפולים.
+העדכון מגיע מתוך שאיפה מתמדת להביא לך את החומרים הטובים ביותר, יחס אישי ותוצאה שממשיכה להיראות מושלם לאורך זמן.
+תודה ענקית על האמון — אני מעריכה כל פעם מחדש שאת בוחרת בי 🤍
+מחכה לראותך בתור הבא!</textarea>
+            <button type="button" class="btn btn--rose calc-copy" id="calc-copy">העתקת ההודעה</button>
+          </div>
+
+          <!-- Share + actions -->
+          <div class="calc-card calc-share">
+            <span class="eyebrow" style="letter-spacing:0.2em;">שיתוף</span>
+            <h2 class="calc-card__title" style="margin-top:0.4rem;">המחשבון עזר לך?</h2>
+            <p>שתפי את הקולגות שלך וקחו אותן איתכן לרווחיות. אשמח לתיוג — נעה מ־GelByNoa 🤍</p>
+            <a href="https://instagram.com/gelbynoacademy" target="_blank" rel="noopener">@gelbynoacademy</a>
+          </div>
+
+          <div class="calc-actions">
+            <button type="button" class="calc-reset" id="calc-reset">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+              איפוס המחשבון
+            </button>
+            <button type="button" class="btn" id="calc-print">הפקת סיכום להדפסה / PDF</button>
+          </div>
+          <p class="calc-foot-note">הנתונים נשמרים אוטומטית במכשיר שלך בלבד.</p>
         </div>
       </div>
     </section>
@@ -365,19 +480,57 @@
   <script>
   /* ================= Profitability Calculator logic ================= */
   (function () {
-    var STORAGE_KEY = "gbn-calc-v1";
+    var STORAGE_KEY = "gbn-calc-v2";
+    var WEEKS_PER_MONTH = 4.33;
     var inputs = [].slice.call(document.querySelectorAll("[data-calc]"));
     if (!inputs.length) return;
 
     var nis = new Intl.NumberFormat("he-IL", { maximumFractionDigits: 0 });
     var fmt = function (n) { return nis.format(Math.round(n)) + " ₪"; };
-    var num = function (el) { var v = parseFloat(el.value); return (isNaN(v) || v < 0) ? 0 : v; };
+    var whole = function (n) { return nis.format(Math.round(n)); };
+    var num = function (id) { var el = document.getElementById(id); if (!el) return 0; var v = parseFloat(el.value); return (isNaN(v) || v < 0) ? 0 : v; };
     var set = function (id, txt) { var el = document.getElementById(id); if (el) el.textContent = txt; };
+
+    var salaryManual = false;
 
     function sumGroup(group) {
       return inputs.reduce(function (acc, el) {
-        return el.getAttribute("data-calc") === group ? acc + num(el) : acc;
+        return el.getAttribute("data-calc") === group ? acc + (function () { var v = parseFloat(el.value); return (isNaN(v) || v < 0) ? 0 : v; })() : acc;
       }, 0);
+    }
+
+    function updateStatus(price, minPrice) {
+      var el = document.getElementById("r-status");
+      if (!el) return;
+      if (price <= 0) {
+        el.className = "calc-status calc-status--neutral";
+        el.innerHTML = 'מלאי את "מחיר ממוצע נוכחי לטיפול" כדי לגלות אם את ברווח או בהפסד.';
+      } else if (price < minPrice) {
+        el.className = "calc-status calc-status--loss";
+        el.innerHTML = "⚠️ את מפסידה כסף. המחיר הנוכחי שאת גובה לטיפול לא מכסה לך את העלויות ולא מאפשר לך להרוויח את המשכורת שאת רוצה. כדי לכסות וגם להרוויח יש לגבות לפחות <strong>" + fmt(minPrice) + "</strong> לטיפול.";
+      } else {
+        el.className = "calc-status calc-status--ok";
+        el.innerHTML = "✔️ יופי! המחיר שאת גובה מכסה את כל ההוצאות ואת המשכורת שרצית — ואת אפילו מרוויחה <strong>" + fmt(price - minPrice) + "</strong> נוסף על כל טיפול.";
+      }
+    }
+
+    function buildTable(total, salary, currentClients) {
+      var body = document.getElementById("r-table");
+      if (!body) return;
+      var base = Math.round(currentClients);
+      if (base <= 0) {
+        body.innerHTML = '<tr><td class="calc-empty" colspan="3">מלאי את נתוני העבודה שלך כדי לראות את התרחישים</td></tr>';
+        return;
+      }
+      var seen = {}, rows = "";
+      [0.7, 0.85, 1, 1.25, 1.5].forEach(function (m) {
+        var nClients = Math.round(base * m);
+        if (nClients <= 0 || seen[nClients]) return;
+        seen[nClients] = true;
+        var current = (m === 1);
+        rows += '<tr' + (current ? ' class="is-current"' : '') + '><td>' + whole(nClients) + '</td><td>' + fmt(total / nClients) + '</td><td>' + fmt((total + salary) / nClients) + '</td></tr>';
+      });
+      body.innerHTML = rows;
     }
 
     function calc() {
@@ -385,51 +538,46 @@
       var variable = sumGroup("variable");
       var total = fixed + variable;
 
-      var price = num(document.getElementById("w-price"));
-      var clients = num(document.getElementById("w-clients"));
-      var hours = num(document.getElementById("w-hours"));
+      var wage = num("w-wage");
+      var hoursDay = num("w-hoursday");
+      var daysWeek = num("w-daysweek");
+      var clientsDay = num("w-clientsday");
+      var price = num("w-price");
 
-      var revenue = price * clients;
-      var profit = revenue - total;
+      // Desired monthly salary — auto from hourly wage unless overridden manually
+      var autoSalary = wage * hoursDay * daysWeek * WEEKS_PER_MONTH;
+      var salaryEl = document.getElementById("w-salary");
+      if (salaryEl && !salaryManual) {
+        salaryEl.value = autoSalary > 0 ? Math.round(autoSalary) : "";
+      }
+      var salary = num("w-salary");
+
+      var totalClients = clientsDay * daysWeek * WEEKS_PER_MONTH;
+      var clientsRounded = Math.round(totalClients);
 
       set("r-fixed", fmt(fixed));
       set("r-variable", fmt(variable));
       set("r-total", fmt(total));
-      set("r-revenue", fmt(revenue));
+      set("r-salary", fmt(salary));
+      set("r-total-clients", clientsRounded > 0 ? whole(clientsRounded) : "—");
+      set("r-clients-display", clientsRounded > 0 ? whole(clientsRounded) : "—");
 
-      // Cost per client (break-even price)
-      set("r-cost-per", clients > 0 ? fmt(total / clients) : "— ₪");
-      // Profit per client
-      set("r-profit-per", clients > 0 ? fmt(profit / clients) : "— ₪");
-      // Profit per hour
-      set("r-profit-hour", hours > 0 ? fmt(profit / hours) : "— ₪");
-
-      // Monthly profit + coloring
-      var profitEl = document.getElementById("r-profit");
-      if (revenue === 0 && total === 0) {
-        profitEl.textContent = "— ₪";
-        profitEl.className = "calc-hero-figure__num";
+      if (totalClients > 0) {
+        set("r-cost-per", fmt(total / totalClients));
+        set("r-min-price", fmt((total + salary) / totalClients));
       } else {
-        profitEl.textContent = fmt(profit);
-        profitEl.className = "calc-hero-figure__num " + (profit >= 0 ? "is-profit" : "is-loss");
+        set("r-cost-per", "— ₪");
+        set("r-min-price", "— ₪");
       }
 
-      // Margin badge
-      var badge = document.getElementById("r-margin-badge");
-      if (revenue > 0) {
-        var margin = (profit / revenue) * 100;
-        badge.hidden = false;
-        badge.textContent = (profit >= 0 ? "רווחיות " : "הפסד ") + Math.abs(Math.round(margin)) + "% מההכנסה";
-        badge.className = "calc-badge " + (profit >= 0 ? "calc-badge--good" : "calc-badge--bad");
-      } else {
-        badge.hidden = true;
-      }
+      updateStatus(price, totalClients > 0 ? (total + salary) / totalClients : Infinity);
+      buildTable(total, salary, totalClients);
     }
 
     function save() {
       try {
-        var data = {};
-        inputs.forEach(function (el) { if (el.value !== "") data[el.id] = el.value; });
+        var data = { salaryManual: salaryManual, vals: {} };
+        inputs.forEach(function (el) { if (el.value !== "") data.vals[el.id] = el.value; });
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       } catch (e) {}
     }
@@ -439,21 +587,51 @@
         var raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return;
         var data = JSON.parse(raw);
-        inputs.forEach(function (el) { if (data[el.id] != null) el.value = data[el.id]; });
+        var vals = data && data.vals ? data.vals : data;
+        salaryManual = !!(data && data.salaryManual);
+        inputs.forEach(function (el) { if (vals[el.id] != null) el.value = vals[el.id]; });
       } catch (e) {}
     }
 
     inputs.forEach(function (el) {
-      el.addEventListener("input", function () { calc(); save(); });
+      el.addEventListener("input", function () {
+        if (el.id === "w-salary") salaryManual = el.value.trim() !== "";
+        calc();
+        save();
+      });
     });
 
     var resetBtn = document.getElementById("calc-reset");
     if (resetBtn) {
       resetBtn.addEventListener("click", function () {
         inputs.forEach(function (el) { el.value = ""; });
+        salaryManual = false;
         try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
         calc();
         inputs[0].focus();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    var printBtn = document.getElementById("calc-print");
+    if (printBtn) printBtn.addEventListener("click", function () { window.print(); });
+
+    var copyBtn = document.getElementById("calc-copy");
+    var msg = document.getElementById("calc-msg");
+    if (copyBtn && msg) {
+      copyBtn.addEventListener("click", function () {
+        var done = function () {
+          copyBtn.textContent = "הועתק! ✓";
+          copyBtn.classList.add("is-done");
+          setTimeout(function () { copyBtn.textContent = "העתקת ההודעה"; copyBtn.classList.remove("is-done"); }, 2200);
+        };
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(msg.value).then(done, function () { msg.select(); document.execCommand("copy"); done(); });
+          } else {
+            msg.select(); document.execCommand("copy"); done();
+          }
+        } catch (e) { msg.select(); }
       });
     }
 
