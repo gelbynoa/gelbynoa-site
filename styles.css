@@ -700,7 +700,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 .masonry__item > img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s var(--ease); }
 .masonry__item:hover > img { transform: scale(1.04); }
 @media (max-width: 860px) { .masonry { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(12, clamp(190px, 30vw, 320px)); } }
-@media (max-width: 520px) { .masonry { grid-template-columns: 1fr; grid-template-rows: repeat(24, clamp(240px, 62vw, 380px)); } }
+/* Mobile: keep the scattered album look — 2 staggered columns (each = 12 units, so the bottom stays even) */
+@media (max-width: 520px) { .masonry { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(12, 150px); gap: 0.6rem; } }
 
 /* =====================================================================
    RESULTS GRID
@@ -787,14 +788,20 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 .mnav__links > a { padding-block: 0.24em; border-bottom: 1px solid rgba(33,28,24,0.07); }
 /* Dropdown flattens into a right-aligned sub-group */
 .mobile-nav .header__dropdown { display: flex; flex-direction: column; align-items: stretch; }
-.mobile-nav .header__dropdown-toggle { padding-block: 0.24em; }
-.mobile-nav .header__caret { display: none; }
+/* "הקורסים" is an accordion: small arrow to the right of the word, sub-items hidden until tapped */
+.mobile-nav .header__dropdown-toggle { padding-block: 0.24em; display: flex; align-items: center; gap: 0.4em; border-bottom: 1px solid rgba(33,28,24,0.07); }
+.mobile-nav .header__caret {
+  display: inline-block; order: -1; font-size: 0.6em; opacity: 0.6;
+  transform: rotate(90deg); transition: transform 0.3s var(--ease);
+}
+.mobile-nav .header__dropdown.is-open .header__caret { transform: rotate(0deg); }
 .mobile-nav .header__submenu {
   position: static; opacity: 1; visibility: visible; transform: none;
   min-width: 0; background: none; border: none; box-shadow: none; backdrop-filter: none;
-  padding: 0 0 0.24em; display: flex; flex-direction: column; align-items: stretch; gap: 0;
+  padding: 0.2em 1.4em 0.4em 0; display: none; flex-direction: column; align-items: stretch; gap: 0;
   border-bottom: 1px solid rgba(33,28,24,0.07);
 }
+.mobile-nav .header__dropdown.is-open .header__submenu { display: flex; }
 /* Sub-items in the second font (sans) — like the hero's serif title + sans subtitle pairing */
 .mobile-nav .header__submenu a { font-family: var(--sans); font-weight: 400; letter-spacing: 0.02em; padding: 0.12em 0; font-size: 0.88rem; opacity: 0.68; white-space: normal; text-align: right; }
 /* Contact — a distinct, near-full-width button beneath the nav */

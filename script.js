@@ -41,6 +41,15 @@
     links.className = "mnav__links";
     links.innerHTML = navSource.innerHTML;
     drawer.appendChild(links);
+    // "הקורסים" becomes an accordion: tap toggles its sub-items instead of navigating.
+    var ddToggle = links.querySelector(".header__dropdown-toggle");
+    if (ddToggle) {
+      ddToggle.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        ddToggle.parentNode.classList.toggle("is-open");
+      });
+    }
     // The CTA now lives outside the nav — clone it into a contact group.
     var headerCta = document.querySelector(".header > .header__cta");
     if (headerCta) {
