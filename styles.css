@@ -274,11 +274,13 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 }
 .header__submenu a:hover { background: var(--bone); opacity: 1; }
 /* Each course's menu item highlights in its own course-card accent (matches the home page cards) */
-.header__submenu a[href="course.html"]            { --accent: #A9857A; }
-.header__submenu a[href="course-beinlevein.html"] { --accent: #8C6A72; }
-.header__submenu a[href="course-miktzoiot.html"]  { --accent: #A5824F; }
+.header__submenu a[href="course.html"]            { --tint: rgba(169, 133, 122, 0.24); }
+.header__submenu a[href="course-beinlevein.html"] { --tint: rgba(140, 106, 114, 0.24); }
+.header__submenu a[href="course-miktzoiot.html"]  { --tint: rgba(165, 130, 79, 0.24); }
+.header__submenu a[href] { -webkit-tap-highlight-color: var(--tint); } /* iPhone tap shading, not grey */
 .header__submenu a[href]:hover,
-.header__submenu a[href]:active { background: color-mix(in srgb, var(--accent) 20%, transparent); }
+.header__submenu a[href]:active,
+.header__submenu a[href].is-current { background: var(--tint); opacity: 1; }
 .header__cta { font-size: 0.9rem; letter-spacing: 0.12em; border: 1px solid currentColor; padding: 0.7em 1.5em; opacity: 1 !important; transition: background 0.5s var(--ease), color 0.5s var(--ease); }
 .header__burger { display: none; flex-direction: column; gap: 5px; }
 .header__burger span { width: 24px; height: 1px; background: currentColor; transition: 0.4s var(--ease); }
@@ -798,6 +800,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 .mobile-nav .header__dropdown-toggle { padding-block: 0.24em; display: flex; align-items: center; gap: 0.4em; border-bottom: 1px solid rgba(33,28,24,0.07); }
 /* Same ▾ arrow as the desktop nav, placed to the right of the word (RTL start); flips when open */
 .mobile-nav .header__caret { display: inline-block; order: -1; }
+/* points down while closed (ignore the desktop hover/focus flip), up only when open */
+.mobile-nav .header__dropdown:hover .header__caret,
+.mobile-nav .header__dropdown:focus-within .header__caret { transform: translateY(0.06em); }
 .mobile-nav .header__dropdown.is-open .header__caret { transform: rotate(180deg); }
 .mobile-nav .header__submenu {
   position: static; opacity: 1; visibility: visible; transform: none;

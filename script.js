@@ -41,6 +41,12 @@
     links.className = "mnav__links";
     links.innerHTML = navSource.innerHTML;
     drawer.appendChild(links);
+    // Mark the current course page in its accent color (desktop dropdown + drawer).
+    var here = location.pathname.split("/").pop();
+    var sel = '.header__submenu a[href="' + here + '"]';
+    [].slice.call(document.querySelectorAll(sel)).concat([].slice.call(links.querySelectorAll(sel))).forEach(function (a) {
+      a.classList.add("is-current");
+    });
     // "הקורסים" becomes an accordion: tap toggles its sub-items instead of navigating.
     var ddToggle = links.querySelector(".header__dropdown-toggle");
     if (ddToggle) {
