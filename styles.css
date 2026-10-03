@@ -277,11 +277,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 .header__submenu a[href="course.html"]            { --accent: #A9857A; --tint: rgba(169, 133, 122, 0.42); }
 .header__submenu a[href="course-beinlevein.html"] { --accent: #8C6A72; --tint: rgba(140, 106, 114, 0.42); }
 .header__submenu a[href="course-miktzoiot.html"]  { --accent: #A5824F; --tint: rgba(165, 130, 79, 0.42); }
-.header__submenu a[href] { color: var(--accent) !important; opacity: 1 !important; font-weight: 500; }
 .header__submenu a[href] { -webkit-tap-highlight-color: var(--tint); } /* iPhone tap shading, not grey */
 .header__submenu a[href]:hover,
-.header__submenu a[href]:active,
-.header__submenu a[href].is-current { background: var(--tint); opacity: 1; color: var(--ink) !important; }
+.header__submenu a[href]:active { background: var(--tint); opacity: 1; }
 .header__cta { font-size: 0.9rem; letter-spacing: 0.12em; border: 1px solid currentColor; padding: 0.7em 1.5em; opacity: 1 !important; transition: background 0.5s var(--ease), color 0.5s var(--ease); }
 .header__burger { display: none; flex-direction: column; gap: 5px; }
 .header__burger span { width: 24px; height: 1px; background: currentColor; transition: 0.4s var(--ease); }
