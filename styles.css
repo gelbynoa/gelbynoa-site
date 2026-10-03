@@ -274,13 +274,14 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 }
 .header__submenu a:hover { background: var(--bone); opacity: 1; }
 /* Each course's menu item highlights in its own course-card accent (matches the home page cards) */
-.header__submenu a[href="course.html"]            { --tint: rgba(169, 133, 122, 0.24); }
-.header__submenu a[href="course-beinlevein.html"] { --tint: rgba(140, 106, 114, 0.24); }
-.header__submenu a[href="course-miktzoiot.html"]  { --tint: rgba(165, 130, 79, 0.24); }
+.header__submenu a[href="course.html"]            { --accent: #A9857A; --tint: rgba(169, 133, 122, 0.42); }
+.header__submenu a[href="course-beinlevein.html"] { --accent: #8C6A72; --tint: rgba(140, 106, 114, 0.42); }
+.header__submenu a[href="course-miktzoiot.html"]  { --accent: #A5824F; --tint: rgba(165, 130, 79, 0.42); }
+.header__submenu a[href] { color: var(--accent) !important; opacity: 1 !important; font-weight: 500; }
 .header__submenu a[href] { -webkit-tap-highlight-color: var(--tint); } /* iPhone tap shading, not grey */
 .header__submenu a[href]:hover,
 .header__submenu a[href]:active,
-.header__submenu a[href].is-current { background: var(--tint); opacity: 1; }
+.header__submenu a[href].is-current { background: var(--tint); opacity: 1; color: var(--ink) !important; }
 .header__cta { font-size: 0.9rem; letter-spacing: 0.12em; border: 1px solid currentColor; padding: 0.7em 1.5em; opacity: 1 !important; transition: background 0.5s var(--ease), color 0.5s var(--ease); }
 .header__burger { display: none; flex-direction: column; gap: 5px; }
 .header__burger span { width: 24px; height: 1px; background: currentColor; transition: 0.4s var(--ease); }
@@ -799,7 +800,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 /* "הקורסים" is an accordion: small arrow to the right of the word, sub-items hidden until tapped */
 .mobile-nav .header__dropdown-toggle { padding-block: 0.24em; display: flex; align-items: center; gap: 0.4em; border-bottom: 1px solid rgba(33,28,24,0.07); }
 /* Same ▾ arrow as the desktop nav, placed to the right of the word (RTL start); flips when open */
-.mobile-nav .header__caret { display: inline-block; order: -1; }
+.mobile-nav .header__caret { display: inline-block; } /* after the word = left of it in RTL, like the web nav */
 /* points down while closed (ignore the desktop hover/focus flip), up only when open */
 .mobile-nav .header__dropdown:hover .header__caret,
 .mobile-nav .header__dropdown:focus-within .header__caret { transform: translateY(0.06em); }
