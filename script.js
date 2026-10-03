@@ -496,7 +496,7 @@
 (function () {
   "use strict";
   var ADS_ID = "AW-18492712642";
-  var LABELS = { lead: "YJjsCPHwyY8dEMLNgfJE", whatsapp: "", phone: "" };
+  var LABELS = { lead: "YJjsCPHwyY8dEMLNgfJE", whatsapp: "khsdCMTxz48dEMLNgfJE", phone: "" };
   window.gbnTrack = function (kind) {
     if (typeof window.gtag !== "function" || !LABELS[kind]) return;
     window.gtag("event", "conversion", { send_to: ADS_ID + "/" + LABELS[kind], value: 1.0, currency: "ILS" });
