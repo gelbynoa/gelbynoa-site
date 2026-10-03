@@ -355,6 +355,7 @@
         if (btn) { btn.disabled = false; btn.textContent = "לשליחת הפנייה"; }
       };
       var done = function () {
+        if (window.gbnTrack) window.gbnTrack("lead");
         if (note) { note.hidden = false; note.innerHTML = "תודה! הטופס נשלח. יכולה גם להשאיר הודעה בוואטסאפ בכפתור שמטה<br>אחזור אלייך אישית בקרוב."; }
         if (btn) btn.textContent = "נשלח ✓";
         form.reset();
@@ -487,4 +488,24 @@
     var active = wrap.querySelector('[data-lang="' + (isEn ? "en" : "he") + '"]');
     if (active) active.classList.add("is-active");
   });
+})();
+
+/* Google Ads conversion tracking — real form submissions, WhatsApp and phone taps.
+   Paste each conversion action's label (the part after the slash in its event
+   snippet's send_to, e.g. "AbC-D_efGhIjK") below; an empty label sends nothing. */
+(function () {
+  "use strict";
+  var ADS_ID = "AW-18492712642";
+  var LABELS = { lead: "", whatsapp: "", phone: "" };
+  window.gbnTrack = function (kind) {
+    if (typeof window.gtag !== "function" || !LABELS[kind]) return;
+    window.gtag("event", "conversion", { send_to: ADS_ID + "/" + LABELS[kind] });
+  };
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]");
+    if (!a) return;
+    var href = a.getAttribute("href");
+    if (/wa\.me|whatsapp/i.test(href)) window.gbnTrack("whatsapp");
+    else if (/^tel:/i.test(href)) window.gbnTrack("phone");
+  }, true);
 })();
