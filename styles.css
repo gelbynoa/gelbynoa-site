@@ -273,6 +273,12 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   transition: background 0.3s var(--ease), opacity 0.3s var(--ease);
 }
 .header__submenu a:hover { background: var(--bone); opacity: 1; }
+/* Each course's menu item highlights in its own course-card accent (matches the home page cards) */
+.header__submenu a[href="course.html"]            { --accent: #A9857A; }
+.header__submenu a[href="course-beinlevein.html"] { --accent: #8C6A72; }
+.header__submenu a[href="course-miktzoiot.html"]  { --accent: #A5824F; }
+.header__submenu a[href]:hover,
+.header__submenu a[href]:active { background: color-mix(in srgb, var(--accent) 20%, transparent); }
 .header__cta { font-size: 0.9rem; letter-spacing: 0.12em; border: 1px solid currentColor; padding: 0.7em 1.5em; opacity: 1 !important; transition: background 0.5s var(--ease), color 0.5s var(--ease); }
 .header__burger { display: none; flex-direction: column; gap: 5px; }
 .header__burger span { width: 24px; height: 1px; background: currentColor; transition: 0.4s var(--ease); }
@@ -790,11 +796,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 .mobile-nav .header__dropdown { display: flex; flex-direction: column; align-items: stretch; }
 /* "הקורסים" is an accordion: small arrow to the right of the word, sub-items hidden until tapped */
 .mobile-nav .header__dropdown-toggle { padding-block: 0.24em; display: flex; align-items: center; gap: 0.4em; border-bottom: 1px solid rgba(33,28,24,0.07); }
-.mobile-nav .header__caret {
-  display: inline-block; order: -1; font-size: 0.6em; opacity: 0.6;
-  transform: rotate(90deg); transition: transform 0.3s var(--ease);
-}
-.mobile-nav .header__dropdown.is-open .header__caret { transform: rotate(0deg); }
+/* Same ▾ arrow as the desktop nav, placed to the right of the word (RTL start); flips when open */
+.mobile-nav .header__caret { display: inline-block; order: -1; }
+.mobile-nav .header__dropdown.is-open .header__caret { transform: rotate(180deg); }
 .mobile-nav .header__submenu {
   position: static; opacity: 1; visibility: visible; transform: none;
   min-width: 0; background: none; border: none; box-shadow: none; backdrop-filter: none;
@@ -803,7 +807,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 }
 .mobile-nav .header__dropdown.is-open .header__submenu { display: flex; }
 /* Sub-items in the second font (sans) — like the hero's serif title + sans subtitle pairing */
-.mobile-nav .header__submenu a { font-family: var(--sans); font-weight: 400; letter-spacing: 0.02em; padding: 0.12em 0; font-size: 0.88rem; opacity: 0.68; white-space: normal; text-align: right; }
+.mobile-nav .header__submenu a { font-family: var(--sans); font-weight: 400; letter-spacing: 0.02em; padding: 0.3em 0.6em; border-radius: 4px; font-size: 0.88rem; opacity: 0.68; white-space: normal; text-align: right; }
 /* Contact — a distinct, near-full-width button beneath the nav */
 .mnav__contact { margin-top: var(--s-3); }
 .mnav__contact .header__cta {
